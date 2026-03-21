@@ -7,6 +7,7 @@ const fs = require('fs');
 const uploadRoutes = require('./routes/upload');
 const generateRoutes = require('./routes/generate');
 const downloadRoutes = require('./routes/download');
+const emailRoutes = require('./routes/email');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/api/upload', uploadRoutes);
 app.use('/api/generate', generateRoutes);
 app.use('/api/download', downloadRoutes);
+app.use('/api/email', emailRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

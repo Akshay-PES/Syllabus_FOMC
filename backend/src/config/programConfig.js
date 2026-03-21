@@ -47,7 +47,7 @@ const PROGRAMS = {
 
   BCOM: {
     id: 'BCOM',
-    label: 'BCom — Bachelor of Commerce',
+    label: 'BCom (General / Hons.) — Bachelor of Commerce',
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in undergraduate Commerce programmes at top Indian universities (SRCC Delhi University, Christ University Bangalore, Symbiosis College of Arts and Commerce Pune, Loyola College Chennai, St. Xavier\'s College Mumbai)',
@@ -67,7 +67,7 @@ const PROGRAMS = {
 
   BCOM_ACCA: {
     id: 'BCOM_ACCA',
-    label: 'BCom ACCA — Bachelor of Commerce with ACCA',
+    label: 'BCom (Hons) with ACCA — Bachelor of Commerce (Hons) with ACCA',
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in ACCA-integrated undergraduate Commerce programmes, with deep knowledge of the ACCA qualification structure (Applied Knowledge, Applied Skills, Strategic Professional) and top ACCA-registered institutions in India',
@@ -89,7 +89,7 @@ const PROGRAMS = {
 
   BCOM_CMA: {
     id: 'BCOM_CMA',
-    label: 'BCom CMA — Bachelor of Commerce with CMA',
+    label: 'BCom (Hons) with CMA — Bachelor of Commerce (Hons) with CMA',
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in CMA-integrated undergraduate Commerce programmes, with deep knowledge of the ICMAI (Institute of Cost Accountants of India) CMA qualification structure',
@@ -109,9 +109,54 @@ const PROGRAMS = {
     ],
   },
 
+  BCOM_CFA: {
+    id: 'BCOM_CFA',
+    label: 'BCom (Hons) with CFA — Bachelor of Commerce (Hons) with CFA',
+    level: 'UG',
+    group: 'UG Commerce',
+    persona: 'senior academic curriculum designer specialising in CFA-integrated undergraduate Commerce programmes, with deep knowledge of the CFA Institute qualification structure (CFA Level I, II, III) and top finance-oriented institutions',
+    benchmarks: 'CFA Institute Curriculum, SRCC Delhi University, Christ University Bangalore, Symbiosis College Pune, Narsee Monjee (NMIMS), SP Jain, UGC model Commerce curriculum',
+    bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
+    teachingMethodology: 'Lectures, Tutorials, Financial Modelling Labs, Bloomberg Terminal Sessions, Group Assignments',
+    extraRules: `- Align course content with CFA Institute's Candidate Body of Knowledge (CBOK) across relevant topic areas
+- Map topics to CFA Level I/II learning outcome statements (LOS) where applicable
+- Emphasise ethics and professional standards as per CFA Institute's Code and Standards
+- Cover key CFA domains: Ethical & Professional Standards, Quantitative Methods, Economics, Financial Reporting & Analysis, Corporate Finance, Equity, Fixed Income, Derivatives, Alternative Investments, Portfolio Management
+- Reference global financial markets, instruments, and regulatory frameworks alongside Indian context (SEBI, RBI, NSE/BSE)
+- Language and depth must be appropriate for undergraduate students
+- EXAM ALIGNMENT (MANDATORY): For each Course Outcome (CO), explicitly identify the CFA topic area and specific LOS it maps to. This mapping supports CFA Institute University Affiliation Programme requirements.`,
+    pos: COMMON_POS,
+    psos: [
+      { id: 'PSO1', statement: '[CFA topic area-specific outcome for this subject]' },
+      { id: 'PSO2', statement: '[relevant PSO for this CFA-integrated commerce subject]' },
+    ],
+  },
+
+  BCOM_CA: {
+    id: 'BCOM_CA',
+    label: 'BCom (Hons.) with CA — Bachelor of Commerce (Hons.) in Finance and Accounting (CA Embedded)',
+    level: 'UG',
+    group: 'UG Commerce',
+    persona: 'senior academic curriculum designer specialising in CA-embedded undergraduate Commerce programmes, with deep knowledge of the ICAI (Institute of Chartered Accountants of India) CA qualification structure (Foundation, Intermediate, Final)',
+    benchmarks: 'ICAI CA Curriculum, SRCC Delhi University, Christ University Bangalore, Symbiosis College Pune, Loyola College Chennai, UGC model Commerce curriculum',
+    bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
+    teachingMethodology: 'Lectures, Tutorials, Accounting Practicals, Audit Simulations, Group Assignments',
+    extraRules: `- Align course content with the relevant ICAI CA Foundation or Intermediate paper(s) as applicable
+- Map topics to ICAI CA syllabus learning outcomes where relevant
+- Emphasise accounting standards (Ind AS / IFRS), auditing standards (SA), taxation (direct & indirect), and corporate law as per CA competency framework
+- Reference Indian accounting regulations (Companies Act, Income Tax Act, GST Act), ICAI pronouncements, and relevant SEBI/RBI guidelines
+- Language and depth must be appropriate for undergraduate students
+- EXAM ALIGNMENT (MANDATORY): For each Course Outcome (CO), explicitly identify the ICAI CA paper and the specific syllabus module (e.g., "CA Intermediate Paper 1 — Accounting Standards") it maps to. This mapping is required for ICAI accreditation alignment.`,
+    pos: COMMON_POS,
+    psos: [
+      { id: 'PSO1', statement: '[CA paper-specific outcome for this subject]' },
+      { id: 'PSO2', statement: '[relevant PSO for this CA-embedded commerce subject]' },
+    ],
+  },
+
   BBA: {
     id: 'BBA',
-    label: 'BBA — Bachelor of Business Administration',
+    label: 'BBA (General / Honors) — Bachelor of Business Administration',
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in undergraduate Business Administration programmes at top Indian institutions (Christ University Bangalore, Symbiosis International University, Amity University, IIM Indore IPM, NMIMS Mumbai)',
@@ -131,7 +176,7 @@ const PROGRAMS = {
 
   BBA_ANALYTICS: {
     id: 'BBA_ANALYTICS',
-    label: 'BBA Analytics — Bachelor of Business Administration (Analytics)',
+    label: 'BBA (Hons) in Business Analytics — Bachelor of Business Administration (Hons) in Business Analytics',
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in undergraduate Business Analytics programmes at top Indian institutions (Christ University Bangalore, NMIMS Mumbai, Symbiosis International University, Great Lakes Institute of Management)',
@@ -147,6 +192,28 @@ const PROGRAMS = {
     psos: [
       { id: 'PSO1', statement: '[relevant analytics-specific PSO for this subject]' },
       { id: 'PSO2', statement: '[relevant PSO for this BBA Analytics subject]' },
+    ],
+  },
+
+  BBA_SPORTS: {
+    id: 'BBA_SPORTS',
+    label: 'BBA in Sports Management — Bachelor of Business Administration in Sports Management',
+    level: 'UG',
+    group: 'UG Commerce',
+    persona: 'senior academic curriculum designer specialising in undergraduate Sports Management programmes at top institutions (IISWBM Kolkata, MIT-WPU Pune, Symbiosis School of Sports Sciences, SPJIMR, Loughborough University, University of Michigan)',
+    benchmarks: 'MIT-WPU Pune, Symbiosis School of Sports Sciences, IISWBM Kolkata, Loughborough University, University of Michigan School of Kinesiology, UGC guidelines',
+    bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
+    teachingMethodology: 'Lectures, Tutorials, Sports Industry Simulations, Field Visits, Group Projects, Internships',
+    extraRules: `- Align content with UGC guidelines for undergraduate Business Administration programmes
+- Integrate sports industry-specific business concepts: sports marketing, event management, athlete management, sports law, sports analytics
+- Include practical exposure to sports organizations, leagues (IPL, ISL, PKL), federations, and sports tech startups
+- Reference Indian sports ecosystem (SAI, BCCI, IOA, Khelo India) alongside global standards (IOC, FIFA, NBA, EPL)
+- Incorporate sports analytics tools and data-driven decision making in sports
+- Language and depth must be appropriate for undergraduate students`,
+    pos: COMMON_POS,
+    psos: [
+      { id: 'PSO1', statement: '[relevant PSO for this sports management subject]' },
+      { id: 'PSO2', statement: '[relevant PSO for this BBA Sports Management subject]' },
     ],
   },
 
@@ -249,7 +316,7 @@ const PROGRAMS = {
 
   BHEM: {
     id: 'BHEM',
-    label: 'BHEM — Bachelor of Hotel and Event Management',
+    label: 'BBA-HEM — Bachelor of Business Administration in Hospitality & Event Management',
     level: 'UG',
     group: 'UG Hospitality',
     persona: 'senior academic curriculum designer specialising in undergraduate Hotel and Event Management programmes at top hospitality institutions (IHM Mumbai, IHM Delhi, Welcomgroup Graduate School of Hotel Administration, WGSHA Manipal, Ecole Hôtelière de Lausanne, Les Roches)',

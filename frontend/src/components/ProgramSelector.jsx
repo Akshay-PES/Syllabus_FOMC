@@ -10,11 +10,14 @@ const PROGRAM_GROUPS = [
   {
     group: 'UG Commerce & Management',
     programs: [
-      { id: 'BCOM',          label: 'BCom',          sub: 'Bachelor of Commerce' },
-      { id: 'BCOM_ACCA',     label: 'BCom ACCA',     sub: 'Bachelor of Commerce with ACCA' },
-      { id: 'BCOM_CMA',      label: 'BCom CMA',      sub: 'Bachelor of Commerce with CMA' },
-      { id: 'BBA',           label: 'BBA',            sub: 'Bachelor of Business Administration' },
-      { id: 'BBA_ANALYTICS', label: 'BBA Analytics',  sub: 'BBA with Business Analytics' },
+      { id: 'BCOM',          label: 'BCom',              sub: 'Bachelor of Commerce (General / Hons.)' },
+      { id: 'BCOM_ACCA',     label: 'BCom ACCA',        sub: 'Bachelor of Commerce (Hons) with ACCA' },
+      { id: 'BCOM_CMA',      label: 'BCom CMA',         sub: 'Bachelor of Commerce (Hons) with CMA' },
+      { id: 'BCOM_CFA',      label: 'BCom CFA',         sub: 'Bachelor of Commerce (Hons) with CFA' },
+      { id: 'BCOM_CA',       label: 'BCom CA',           sub: 'Bachelor of Commerce (Hons.) with CA' },
+      { id: 'BBA',           label: 'BBA',               sub: 'BBA (General / Honors)' },
+      { id: 'BBA_ANALYTICS', label: 'BBA Analytics',     sub: 'BBA (Hons) in Business Analytics' },
+      { id: 'BBA_SPORTS',    label: 'BBA Sports Mgmt',   sub: 'BBA in Sports Management' },
     ],
   },
   {
@@ -34,7 +37,7 @@ const PROGRAM_GROUPS = [
   {
     group: 'UG Hospitality',
     programs: [
-      { id: 'BHEM', label: 'BHEM', sub: 'Bachelor of Hotel and Event Management' },
+      { id: 'BHEM', label: 'BBA-HEM', sub: 'BBA in Hospitality & Event Management' },
     ],
   },
 ];

@@ -49,7 +49,8 @@ const handleGenerate = async (req, res) => {
 
   // Step 5: Extract course name from output for filename
   let courseName = 'syllabus';
-  const courseMatch = output.match(/(?:Course\s*(?:Title|Name)\s*[:\-|]\s*)(.+)/i);
+  // Match table row: | **Course Title** | Some Course Name |
+  const courseMatch = output.match(/\|\s*\*{0,2}Course\s*(?:Title|Name)\*{0,2}\s*\|\s*(.+?)\s*\|/i);
   if (courseMatch) {
     courseName = courseMatch[1]
       .replace(/\*\*/g, '')
@@ -58,6 +59,7 @@ const handleGenerate = async (req, res) => {
       .replace(/[^a-zA-Z0-9\s\-]/g, '')
       .replace(/\s+/g, '_')
       .substring(0, 80);
+    if (!courseName) courseName = 'syllabus';
   }
 
   // Step 6: Generate DOCX

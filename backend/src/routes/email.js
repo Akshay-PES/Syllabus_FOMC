@@ -2,11 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const fs = require('fs');
-const nodemailer = require('nodemailer');
-const dns = require('dns');
-
-// Force IPv4 to avoid ENETUNREACH on IPv6-only hosts
-dns.setDefaultResultOrder('ipv4first');
+const { Resend } = require('resend');
 
 const UPLOADS_DIR = path.join(__dirname, '../../uploads');
 
@@ -27,23 +23,18 @@ router.post('/', async (req, res) => {
     return res.status(404).json({ error: 'File not found. Please regenerate the syllabus.' });
   }
 
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
+  const resendKey = process.env.RESEND_API_KEY;
 
-  if (!smtpUser || !smtpPass) {
+  if (!resendKey) {
     return res.status(500).json({ error: 'Email service is not configured on the server.' });
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: { user: smtpUser, pass: smtpPass },
-    });
+    const resend = new Resend(resendKey);
+    const fileBuffer = fs.readFileSync(filePath);
 
-    await transporter.sendMail({
-      from: `"Syllabus Enhancement Tool" <${smtpUser}>`,
+    await resend.emails.send({
+      from: 'Syllabus Enhancement Tool <onboarding@resend.dev>',
       to,
       subject: 'Your Enhanced Syllabus — PES University',
       html: `
@@ -61,14 +52,14 @@ router.post('/', async (req, res) => {
       attachments: [
         {
           filename: 'updated_syllabus.docx',
-          path: filePath,
+          content: fileBuffer,
         },
       ],
     });
 
     res.json({ message: `Syllabus sent to ${to}` });
   } catch (err) {
-    console.error('[email] Send error:', err.message, err.code, err.response);
+    console.error('[email] Send error:', err.message);
     res.status(500).json({ error: `Failed to send email: ${err.message}` });
   }
 });

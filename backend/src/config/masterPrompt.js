@@ -357,6 +357,16 @@ Rules for this section:
 
 ### 11. SYLLABUS REVISION SUMMARY
 
+**% Change Calculation Method (MANDATORY):**
+Calculate the "% Change vs. Previous Year" based ONLY on changes in these sections:
+- Section 6: Detailed Course Contents (all 4 units — topic additions, removals, modifications)
+- AI Tools/Software added or changed across all units
+- Section 10: Textbooks and Reference Books (additions, removals, replacements)
+
+Do NOT count changes in Preamble, Objectives, COs, POs, Assessment Plan, or other structural sections towards the percentage.
+
+Formula: (Number of changed/added/removed items in the above sections) / (Total original items in those sections) × 100
+
 Apply colour tags inside the Details column cells as follows:
 - New Topics Added → wrap each added topic in [YELLOW]...[/YELLOW]
 - Topics Removed → wrap each removed topic in [RED]...[/RED]
@@ -365,7 +375,7 @@ Apply colour tags inside the Details column cells as follows:
 
 | Parameter | Details |
 |---|---|
-| % Change vs. Previous Year | [X%] |
+| % Change vs. Previous Year | [X%] (calculated from Unit content, AI tools, and Textbooks/References only) |
 | New Topics Added | [YELLOW]topic 1[/YELLOW]; [YELLOW]topic 2[/YELLOW]; ... |
 | Topics Removed | [RED]topic 1[/RED]; [RED]topic 2[/RED]; ... |
 | Tools / Technologies Expanded | [GREEN]tool 1[/GREEN]; [GREEN]tool 2[/GREEN]; ... |

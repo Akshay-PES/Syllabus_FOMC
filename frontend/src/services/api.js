@@ -35,16 +35,16 @@ export async function generateSyllabus(syllabusFilename, syllabusType, programId
  * Download the generated .docx file.
  * @param {string} filename - server-side filename of the generated docx
  */
-export async function downloadDocx(filename) {
+export async function downloadDocx(filename, downloadName) {
   const response = await axios.get(`${BASE}/download`, {
-    params: { filename },
+    params: { filename, downloadName },
     responseType: 'blob',
   });
 
   const url = window.URL.createObjectURL(new Blob([response.data]));
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'updated_syllabus.docx';
+  link.download = downloadName || 'updated_syllabus.docx';
   link.click();
   window.URL.revokeObjectURL(url);
 }

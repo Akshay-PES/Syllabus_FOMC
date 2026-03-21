@@ -39,6 +39,7 @@ export default function Home() {
   const [status, setStatus]           = useState('idle');
   const [output, setOutput]           = useState('');
   const [docxFilename, setDocxFilename] = useState(null);
+  const [downloadName, setDownloadName] = useState(null);
   const [errorMsg, setErrorMsg]       = useState('');
   const [progressStep, setProgressStep] = useState(0);
 
@@ -67,6 +68,7 @@ export default function Home() {
     setOutput('');
     setErrorMsg('');
     setDocxFilename(null);
+    setDownloadName(null);
     setProgressStep(0);
 
     try {
@@ -81,6 +83,7 @@ export default function Home() {
       setProgressStep(4);
       setOutput(result.output);
       if (result.docxFilename) setDocxFilename(result.docxFilename);
+      if (result.downloadName) setDownloadName(result.downloadName);
       setStatus('done');
     } catch (err) {
       const msg = err.response?.data?.error || err.message || 'An unexpected error occurred.';
@@ -260,7 +263,7 @@ export default function Home() {
                 <h2 className="text-white font-bold text-xl">Enhanced Syllabus</h2>
                 <p className="text-blue-200 text-sm mt-2">Review highlights, then copy, download, or email</p>
               </div>
-              <ActionBar output={output} docxFilename={docxFilename} />
+              <ActionBar output={output} docxFilename={docxFilename} downloadName={downloadName} />
             </div>
             <div className="p-8">
               <OutputViewer output={output} />

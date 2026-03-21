@@ -7,7 +7,7 @@ const UPLOADS_DIR = path.join(__dirname, '../../uploads');
 
 // GET /api/download?filename=syllabus-xxx.docx
 router.get('/', (req, res) => {
-  const { filename } = req.query;
+  const { filename, downloadName } = req.query;
 
   // Validate: must be a .docx filename with no path traversal
   if (!filename || filename.includes('..') || filename.includes('/') || !filename.endsWith('.docx')) {
@@ -20,8 +20,9 @@ router.get('/', (req, res) => {
     return res.status(404).json({ error: 'File not found or already downloaded.' });
   }
 
+  const safeName = downloadName || 'updated_syllabus.docx';
   res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-  res.setHeader('Content-Disposition', 'attachment; filename="updated_syllabus.docx"');
+  res.setHeader('Content-Disposition', `attachment; filename="${safeName}"`);
 
   const stream = fs.createReadStream(filePath);
   stream.pipe(res);

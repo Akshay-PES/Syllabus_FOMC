@@ -47,10 +47,23 @@ const handleGenerate = async (req, res) => {
   // Step 4: Remove uploaded syllabus file
   try { fs.unlinkSync(syllabusPath); } catch (_) {}
 
-  // Step 5: Generate DOCX
+  // Step 5: Extract course name from output for filename
+  let courseName = 'syllabus';
+  const courseMatch = output.match(/(?:Course\s*(?:Title|Name)\s*[:\-|]\s*)(.+)/i);
+  if (courseMatch) {
+    courseName = courseMatch[1]
+      .replace(/\*\*/g, '')
+      .replace(/\[(YELLOW|GREEN|RED|\/YELLOW|\/GREEN|\/RED)\]/g, '')
+      .trim()
+      .replace(/[^a-zA-Z0-9\s\-]/g, '')
+      .replace(/\s+/g, '_')
+      .substring(0, 80);
+  }
+
+  // Step 6: Generate DOCX
   let docxFilename = null;
   try {
-    docxFilename = `syllabus-${Date.now()}.docx`;
+    docxFilename = `${courseName}_${Date.now()}.docx`;
     const docxPath = path.join(UPLOADS_DIR, docxFilename);
     await exportToDocx(output, docxPath);
   } catch (err) {
@@ -58,7 +71,7 @@ const handleGenerate = async (req, res) => {
     docxFilename = null; // Non-fatal: user can still copy the text
   }
 
-  return res.status(200).json({ output, docxFilename });
+  return res.status(200).json({ output, docxFilename, downloadName: `${courseName}.docx` });
 };
 
 module.exports = { handleGenerate };

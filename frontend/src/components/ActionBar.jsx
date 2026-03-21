@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { downloadDocx } from '../services/api';
 
-export default function ActionBar({ output, docxFilename }) {
+export default function ActionBar({ output, docxFilename, downloadName }) {
   const [copied, setCopied] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
@@ -21,7 +21,7 @@ export default function ActionBar({ output, docxFilename }) {
   const handleDownload = async () => {
     setDownloading(true);
     try {
-      await downloadDocx(docxFilename);
+      await downloadDocx(docxFilename, downloadName);
     } catch (err) {
       alert(`Download failed: ${err.message}`);
     } finally {

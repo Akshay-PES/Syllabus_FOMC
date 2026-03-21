@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProgramSelector from '../components/ProgramSelector';
 import FileUpload from '../components/FileUpload';
 import OutputViewer from '../components/OutputViewer';
@@ -40,21 +40,43 @@ export default function Home() {
   const [output, setOutput]           = useState('');
   const [docxFilename, setDocxFilename] = useState(null);
   const [errorMsg, setErrorMsg]       = useState('');
+  const [progressStep, setProgressStep] = useState(0);
+
+  const PROGRESS_STEPS = [
+    { label: 'Uploading syllabus',              desc: 'Sending your file to the server' },
+    { label: 'Extracting text',                 desc: 'Parsing content from your document' },
+    { label: 'Building programme-specific prompt', desc: `Applying ${PROGRAM_LABELS[programId] || ''} benchmarks & standards` },
+    { label: 'AI analysing & enhancing',        desc: 'Claude is evaluating and restructuring your syllabus' },
+    { label: 'Generating DOCX',                 desc: 'Creating your formatted Word document' },
+  ];
+
+  // Simulate progress steps during generation since backend is a single call
+  useEffect(() => {
+    if (status !== 'generating') return;
+    const timers = [
+      setTimeout(() => setProgressStep(2), 3000),
+      setTimeout(() => setProgressStep(3), 6000),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [status]);
 
   const handleFileReady = async (syllabusFile) => {
     setStatus('uploading');
     setOutput('');
     setErrorMsg('');
     setDocxFilename(null);
+    setProgressStep(0);
 
     try {
       const uploadData = await uploadFile(syllabusFile);
+      setProgressStep(1);
       setStatus('generating');
       const result = await generateSyllabus(
         uploadData.syllabus.filename,
         uploadData.syllabus.mimetype,
         programId,
       );
+      setProgressStep(4);
       setOutput(result.output);
       if (result.docxFilename) setDocxFilename(result.docxFilename);
       setStatus('done');
@@ -158,20 +180,63 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Status banner */}
+        {/* Progress indicator */}
         {isLoading && (
-          <div className="bg-pes-navy-light border border-pes-navy rounded-xl px-5 py-4 flex items-center gap-4">
-            <svg className="animate-spin w-5 h-5 flex-shrink-0" style={{ color: '#1b3a6b' }} fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-            </svg>
-            <div>
-              <p className="text-sm font-bold text-pes-navy">
-                {status === 'uploading' ? 'Uploading syllabus...' : `Analysing and enhancing your ${programLabel} syllabus...`}
-              </p>
-              {status === 'generating' && (
-                <p className="text-xs text-gray-500 mt-0.5">Benchmarking against global standards · This may take 60–90 seconds</p>
-              )}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="bg-pes-navy px-6 py-4">
+              <h2 className="text-white font-semibold text-base">Processing Your Syllabus</h2>
+              <p className="text-blue-200 text-sm mt-0.5">This may take 60–90 seconds</p>
+            </div>
+            <div className="p-6">
+              {/* Progress bar */}
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
+                <div
+                  className="h-2 rounded-full transition-all duration-1000 ease-out"
+                  style={{
+                    backgroundColor: '#ff6c00',
+                    width: `${((progressStep + 1) / PROGRESS_STEPS.length) * 100}%`,
+                  }}
+                />
+              </div>
+
+              {/* Steps */}
+              <div className="space-y-3">
+                {PROGRESS_STEPS.map((s, i) => {
+                  const isDone = i < progressStep;
+                  const isCurrent = i === progressStep;
+                  return (
+                    <div key={i} className={`flex items-center gap-3 rounded-lg px-4 py-2.5 transition-all duration-300 ${isCurrent ? 'bg-[#fff3eb] border border-[#ff6c00]/30' : ''}`}>
+                      {/* Icon */}
+                      {isDone ? (
+                        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                      ) : isCurrent ? (
+                        <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                          <svg className="animate-spin w-5 h-5" style={{ color: '#ff6c00' }} fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                          </svg>
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6 rounded-full border-2 border-gray-300 flex-shrink-0" />
+                      )}
+
+                      {/* Text */}
+                      <div>
+                        <p className={`text-sm font-semibold ${isDone ? 'text-green-700' : isCurrent ? 'text-pes-navy' : 'text-gray-400'}`}>
+                          {s.label}
+                        </p>
+                        {isCurrent && (
+                          <p className="text-xs text-gray-500 mt-0.5">{s.desc}</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

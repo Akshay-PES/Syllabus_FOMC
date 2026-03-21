@@ -30,8 +30,9 @@ const PROGRAM_GROUPS = [
   {
     group: 'UG Science / Social Science',
     programs: [
-      { id: 'BSC_PSYCHOLOGY', label: 'BSc Psychology', sub: 'Bachelor of Science in Psychology' },
+      { id: 'BSC_PSYCHOLOGY', label: 'BSc Psychology', sub: 'Bachelor of Science (B.Sc) in Psychology – General / Honors' },
       { id: 'BSC_ECONOMICS',  label: 'BSc Economics',  sub: 'Bachelor of Science in Economics' },
+      { id: 'BSC_JMC',        label: 'BSc JMC',        sub: 'Bachelor of Science (B.Sc.) in Journalism & Mass Communication – Honors' },
     ],
   },
   {

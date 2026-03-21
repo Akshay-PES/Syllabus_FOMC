@@ -270,7 +270,7 @@ const PROGRAMS = {
 
   BSC_PSYCHOLOGY: {
     id: 'BSC_PSYCHOLOGY',
-    label: 'BSc Psychology — Bachelor of Science in Psychology',
+    label: 'BSc Psychology (General / Honors) — Bachelor of Science in Psychology',
     level: 'UG',
     group: 'UG Science / Social Science',
     persona: 'senior academic curriculum designer specialising in undergraduate Psychology programmes at top Indian universities (Delhi University, Christ University Bangalore, Fergusson College Pune, FLAME University, Presidency University Kolkata)',
@@ -309,6 +309,30 @@ const PROGRAMS = {
     psos: [
       { id: 'PSO1', statement: '[subject-specific economics competency outcome]' },
       { id: 'PSO2', statement: '[relevant PSO for this BSc Economics subject]' },
+    ],
+  },
+
+  BSC_JMC: {
+    id: 'BSC_JMC',
+    label: 'BSc JMC (Hons) — Bachelor of Science in Journalism & Mass Communication (Honors)',
+    level: 'UG',
+    group: 'UG Science / Social Science',
+    persona: 'senior academic curriculum designer specialising in undergraduate Journalism and Mass Communication programmes at top Indian universities (IIMC Delhi, Symbiosis Institute of Media and Communication, AJK MCRC Jamia Millia Islamia, Xavier Institute of Communications Mumbai, Asian College of Journalism Chennai)',
+    benchmarks: 'IIMC (Indian Institute of Mass Communication) Delhi, Symbiosis Institute of Media and Communication Pune, AJK MCRC Jamia Millia Islamia, Xavier Institute of Communications Mumbai, Asian College of Journalism Chennai, UGC model curriculum for Journalism & Mass Communication',
+    bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
+    teachingMethodology: 'Lectures, Media Labs, Newsroom Simulations, Field Reporting, Production Workshops, Seminar Presentations',
+    extraRules: `- Align content with UGC guidelines for undergraduate Journalism & Mass Communication programmes
+- Integrate practical media production skills (print, broadcast, digital, social media) throughout the curriculum
+- Include media law, ethics, and regulatory frameworks (Press Council of India, TRAI, IT Act, Cable Television Networks Act)
+- Balance theoretical media studies with hands-on journalism practice and production
+- Cover convergence journalism, digital media, data journalism, and AI tools in media
+- Reference both Indian media landscape (PCI, NBA, BARC, ASCI) and global journalism standards
+- Lab components should include news writing, video production, audio production, digital content creation, and social media management
+- Language and depth must be appropriate for undergraduate students`,
+    pos: COMMON_POS,
+    psos: [
+      { id: 'PSO1', statement: '[subject-specific journalism/media competency outcome]' },
+      { id: 'PSO2', statement: '[relevant PSO for this BSc JMC subject]' },
     ],
   },
 

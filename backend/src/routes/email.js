@@ -3,6 +3,10 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const dns = require('dns');
+
+// Force IPv4 to avoid ENETUNREACH on IPv6-only hosts
+dns.setDefaultResultOrder('ipv4first');
 
 const UPLOADS_DIR = path.join(__dirname, '../../uploads');
 

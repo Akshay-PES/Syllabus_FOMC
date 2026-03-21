@@ -39,100 +39,118 @@ const PROGRAM_GROUPS = [
 
 export default function ProgramSelector({ selected, onSelect, onContinue }) {
   return (
-    <div className="min-h-screen bg-[#f4f5f7]">
+    <div className="min-h-screen bg-[#f7f8fa]">
 
       {/* Header */}
-      <header className="bg-white border-b-4 border-pes-orange shadow-sm">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center gap-4">
-          <img src="/pes-logo.png" alt="PES University" className="h-12 object-contain" />
-          <div className="w-px h-10 bg-gray-200" />
+      <header className="bg-white shadow-md">
+        <div className="max-w-6xl mx-auto px-8 py-5 flex items-center gap-5">
+          <img src="/pes-logo.png" alt="PES University" className="h-14 object-contain" />
+          <div className="w-px h-12 bg-gray-200" />
           <div>
-            <p className="text-xs font-semibold text-pes-orange uppercase tracking-widest">Curriculum AI</p>
-            <h1 className="text-lg font-bold text-pes-navy leading-tight">Syllabus Enhancement Tool</h1>
+            <p className="text-xs font-bold text-pes-orange uppercase tracking-[0.2em]">Curriculum AI</p>
+            <h1 className="text-xl font-bold text-pes-navy leading-tight mt-0.5">Syllabus Enhancement Tool</h1>
           </div>
         </div>
+        {/* Orange accent line */}
+        <div className="h-1 bg-gradient-to-r from-pes-orange via-pes-orange to-pes-navy" />
       </header>
 
-      <main className="max-w-3xl mx-auto px-6 py-10 space-y-6">
+      <main className="max-w-5xl mx-auto px-8 py-12">
 
         {/* Step bar */}
-        <div className="flex items-center gap-2 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-pes-orange text-white flex items-center justify-center text-xs font-bold shadow">1</div>
-            <span className="font-semibold text-pes-navy">Select Programme</span>
+        <div className="flex items-center gap-3 text-sm mb-10">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-pes-orange text-white flex items-center justify-center text-sm font-bold shadow-lg shadow-orange-200">1</div>
+            <span className="font-bold text-pes-navy text-base">Select Programme</span>
           </div>
-          <div className="flex-1 h-px bg-gray-300 mx-2" />
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center text-xs font-bold">2</div>
-            <span className="text-gray-400">Upload & Generate</span>
+          <div className="flex-1 h-px bg-gray-300 mx-4" />
+          <div className="flex items-center gap-3 opacity-40">
+            <div className="w-9 h-9 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center text-sm font-bold">2</div>
+            <span className="text-gray-400 text-base">Upload & Generate</span>
           </div>
         </div>
 
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        {/* Hero section */}
+        <div className="mb-10">
+          <h2 className="text-3xl font-bold text-pes-navy leading-snug">
+            Which programme is this syllabus for?
+          </h2>
+          <p className="text-gray-500 text-base mt-3 max-w-2xl leading-relaxed">
+            Select your academic programme below. The AI will benchmark against global standards,
+            calibrate difficulty, and format the output specifically for your programme.
+          </p>
+        </div>
 
-          {/* Card header strip */}
-          <div className="bg-pes-navy px-6 py-4">
-            <h2 className="text-white font-semibold text-base">Which programme is this syllabus for?</h2>
-            <p className="text-blue-200 text-sm mt-0.5">
-              The AI will benchmark, calibrate difficulty, and format the output for the selected programme.
-            </p>
-          </div>
-
-          <div className="p-6 space-y-6">
-            {PROGRAM_GROUPS.map(({ group, programs }) => (
-              <div key={group}>
-                <p className="text-xs font-bold text-pes-navy uppercase tracking-widest mb-3 flex items-center gap-2">
-                  <span className="inline-block w-4 h-0.5 bg-pes-orange" />
+        {/* Programme groups */}
+        <div className="space-y-10">
+          {PROGRAM_GROUPS.map(({ group, programs }) => (
+            <div key={group}>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-1 h-6 rounded-full bg-pes-orange" />
+                <h3 className="text-sm font-bold text-pes-navy uppercase tracking-[0.15em]">
                   {group}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {programs.map(({ id, label, sub }) => {
-                    const isSelected = selected === id;
-                    return (
-                      <button
-                        key={id}
-                        onClick={() => onSelect(id)}
-                        className={`text-left px-4 py-3 rounded-xl border-2 transition-all duration-150 ${
-                          isSelected
-                            ? 'border-pes-orange bg-pes-orange-light'
-                            : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
-                        }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className={`text-sm font-bold ${isSelected ? 'text-pes-orange' : 'text-pes-navy'}`}>
-                              {label}
-                            </p>
-                            <p className="text-xs text-gray-400 mt-0.5">{sub}</p>
-                          </div>
-                          {isSelected && (
-                            <div className="w-5 h-5 rounded-full bg-pes-orange flex items-center justify-center flex-shrink-0 ml-2">
-                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                              </svg>
-                            </div>
-                          )}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                </h3>
+                <div className="flex-1 h-px bg-gray-200" />
               </div>
-            ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {programs.map(({ id, label, sub }) => {
+                  const isSelected = selected === id;
+                  return (
+                    <button
+                      key={id}
+                      onClick={() => onSelect(id)}
+                      className={`group text-left px-6 py-5 rounded-xl border-2 transition-all duration-200 ${
+                        isSelected
+                          ? 'border-pes-orange bg-pes-orange-light shadow-md shadow-orange-100'
+                          : 'border-gray-200 bg-white hover:border-pes-navy/30 hover:shadow-md hover:-translate-y-0.5'
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className={`text-base font-bold ${isSelected ? 'text-pes-orange' : 'text-pes-navy group-hover:text-pes-navy'}`}>
+                            {label}
+                          </p>
+                          <p className="text-sm text-gray-400 mt-1.5 leading-snug">{sub}</p>
+                        </div>
+                        {isSelected ? (
+                          <div className="w-6 h-6 rounded-full bg-pes-orange flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                        ) : (
+                          <div className="w-6 h-6 rounded-full border-2 border-gray-200 flex-shrink-0 mt-0.5 group-hover:border-gray-300" />
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
 
-            <button
-              onClick={onContinue}
-              disabled={!selected}
-              className="w-full py-3.5 rounded-xl text-sm font-bold transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ backgroundColor: selected ? '#ff6c00' : undefined, color: selected ? '#fff' : undefined }}
-            >
-              {selected ? 'Continue to Upload →' : 'Select a programme to continue'}
-            </button>
-          </div>
+        {/* Continue button */}
+        <div className="mt-12 flex justify-end">
+          <button
+            onClick={onContinue}
+            disabled={!selected}
+            className="px-10 py-4 rounded-xl text-base font-bold transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg disabled:shadow-none"
+            style={selected ? { backgroundColor: '#ff6c00', color: '#fff', boxShadow: '0 8px 24px rgba(255, 108, 0, 0.3)' } : {}}
+          >
+            {selected ? 'Continue to Upload \u2192' : 'Select a programme to continue'}
+          </button>
         </div>
 
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 mt-16">
+        <div className="max-w-6xl mx-auto px-8 py-6 flex items-center justify-between">
+          <p className="text-xs text-gray-400">PES University Syllabus Enhancement Tool</p>
+          <p className="text-xs text-gray-400">Powered by Claude AI</p>
+        </div>
+      </footer>
     </div>
   );
 }

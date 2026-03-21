@@ -42,15 +42,17 @@ export default function Home() {
   const [errorMsg, setErrorMsg]       = useState('');
   const [progressStep, setProgressStep] = useState(0);
 
+  const programLabel = PROGRAM_LABELS[programId] || programId;
+  const benchmark    = BENCHMARKS[programId] || '';
+
   const PROGRESS_STEPS = [
     { label: 'Uploading syllabus',              desc: 'Sending your file to the server' },
     { label: 'Extracting text',                 desc: 'Parsing content from your document' },
-    { label: 'Building programme-specific prompt', desc: `Applying ${PROGRAM_LABELS[programId] || ''} benchmarks & standards` },
+    { label: 'Building programme-specific prompt', desc: `Applying ${programLabel} benchmarks & standards` },
     { label: 'AI analysing & enhancing',        desc: 'Claude is evaluating and restructuring your syllabus' },
     { label: 'Generating DOCX',                 desc: 'Creating your formatted Word document' },
   ];
 
-  // Simulate progress steps during generation since backend is a single call
   useEffect(() => {
     if (status !== 'generating') return;
     const timers = [
@@ -88,8 +90,6 @@ export default function Home() {
   };
 
   const isLoading = status === 'uploading' || status === 'generating';
-  const programLabel = PROGRAM_LABELS[programId] || programId;
-  const benchmark    = BENCHMARKS[programId] || '';
 
   if (step === 'select') {
     return (
@@ -102,75 +102,75 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f4f5f7]">
+    <div className="min-h-screen bg-[#f7f8fa]">
 
       {/* Header */}
-      <header className="bg-white border-b-4 border-pes-orange shadow-sm">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center gap-4">
-          <img src="/pes-logo.png" alt="PES University" className="h-12 object-contain" />
-          <div className="w-px h-10 bg-gray-200" />
+      <header className="bg-white shadow-md">
+        <div className="max-w-6xl mx-auto px-8 py-5 flex items-center gap-5">
+          <img src="/pes-logo.png" alt="PES University" className="h-14 object-contain" />
+          <div className="w-px h-12 bg-gray-200" />
           <div className="flex-1">
-            <p className="text-xs font-semibold text-pes-orange uppercase tracking-widest">Curriculum AI</p>
-            <h1 className="text-lg font-bold text-pes-navy leading-tight">Syllabus Enhancement Tool</h1>
+            <p className="text-xs font-bold text-pes-orange uppercase tracking-[0.2em]">Curriculum AI</p>
+            <h1 className="text-xl font-bold text-pes-navy leading-tight mt-0.5">Syllabus Enhancement Tool</h1>
           </div>
-          {/* Programme badge + change */}
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-pes-orange text-white shadow-sm">
+          <div className="flex items-center gap-4">
+            <span className="text-sm font-bold px-4 py-2 rounded-full bg-pes-orange text-white shadow-lg shadow-orange-200">
               {programLabel}
             </span>
             <button
               onClick={() => { setStep('select'); setStatus('idle'); setOutput(''); setErrorMsg(''); }}
-              className="text-xs text-gray-400 hover:text-pes-orange underline transition-colors"
+              className="text-sm text-gray-400 hover:text-pes-orange font-medium transition-colors"
             >
               Change
             </button>
           </div>
         </div>
+        <div className="h-1 bg-gradient-to-r from-pes-orange via-pes-orange to-pes-navy" />
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-8 space-y-6">
+      <main className="max-w-5xl mx-auto px-8 py-12 space-y-8">
 
         {/* Step bar */}
-        <div className="flex items-center gap-2 text-sm">
-          <div className="flex items-center gap-2 opacity-50">
-            <div className="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-xs font-bold">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center gap-3 text-sm">
+          <div className="flex items-center gap-3 opacity-50">
+            <div className="w-9 h-9 rounded-full bg-green-500 text-white flex items-center justify-center flex-shrink-0">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <span className="text-gray-400 font-medium">Select Programme</span>
+            <span className="text-gray-400 font-medium text-base">Select Programme</span>
           </div>
-          <div className="flex-1 h-px bg-gray-300 mx-2" />
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-pes-orange text-white flex items-center justify-center text-xs font-bold shadow">2</div>
-            <span className="font-semibold text-pes-navy">Upload & Generate</span>
+          <div className="flex-1 h-px bg-gray-300 mx-4" />
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-pes-orange text-white flex items-center justify-center text-sm font-bold shadow-lg shadow-orange-200">2</div>
+            <span className="font-bold text-pes-navy text-base">Upload & Generate</span>
           </div>
         </div>
 
         {/* Upload card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
 
-          {/* Navy card header */}
-          <div className="bg-pes-navy px-6 py-4">
-            <h2 className="text-white font-semibold text-base">Upload Your {programLabel} Syllabus</h2>
-            <p className="text-blue-200 text-sm mt-0.5">
+          {/* Card header */}
+          <div className="bg-gradient-to-r from-pes-navy to-pes-navy-dark px-8 py-6">
+            <h2 className="text-white font-bold text-xl">Upload Your {programLabel} Syllabus</h2>
+            <p className="text-blue-200 text-sm mt-2 leading-relaxed">
               Benchmarked against: {benchmark}
             </p>
           </div>
 
-          <div className="p-6 space-y-4">
+          <div className="p-8 space-y-6">
             {/* Info strip */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { icon: '🔍', label: 'Evaluates',  desc: 'Coverage, rigor & AI integration' },
-                { icon: '✏️', label: 'Refines',    desc: 'Improves topics selectively' },
-                { icon: '📋', label: 'Formats',    desc: `Standard 12-section ${programLabel} format` },
+                { icon: '\uD83D\uDD0D', label: 'Evaluates',  desc: 'Coverage, rigor & AI integration' },
+                { icon: '\u270F\uFE0F', label: 'Refines',    desc: 'Improves topics selectively' },
+                { icon: '\uD83D\uDCCB', label: 'Formats',    desc: `Standard 12-section ${programLabel} format` },
               ].map(({ icon, label, desc }) => (
-                <div key={label} className="flex items-start gap-3 bg-[#f4f5f7] rounded-xl p-3 border border-gray-100">
-                  <span className="text-xl">{icon}</span>
+                <div key={label} className="flex items-start gap-4 bg-[#f7f8fa] rounded-xl p-5 border border-gray-100">
+                  <span className="text-2xl">{icon}</span>
                   <div>
-                    <p className="text-xs font-bold text-pes-navy">{label}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{desc}</p>
+                    <p className="text-sm font-bold text-pes-navy">{label}</p>
+                    <p className="text-xs text-gray-400 mt-1 leading-relaxed">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -182,16 +182,16 @@ export default function Home() {
 
         {/* Progress indicator */}
         {isLoading && (
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-            <div className="bg-pes-navy px-6 py-4">
-              <h2 className="text-white font-semibold text-base">Processing Your Syllabus</h2>
-              <p className="text-blue-200 text-sm mt-0.5">This may take 60–90 seconds</p>
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="bg-gradient-to-r from-pes-navy to-pes-navy-dark px-8 py-6">
+              <h2 className="text-white font-bold text-xl">Processing Your Syllabus</h2>
+              <p className="text-blue-200 text-sm mt-2">This may take 60\u201390 seconds</p>
             </div>
-            <div className="p-6">
+            <div className="p-8">
               {/* Progress bar */}
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
+              <div className="w-full bg-gray-100 rounded-full h-2.5 mb-8 overflow-hidden">
                 <div
-                  className="h-2 rounded-full transition-all duration-1000 ease-out"
+                  className="h-2.5 rounded-full transition-all duration-1000 ease-out"
                   style={{
                     backgroundColor: '#ff6c00',
                     width: `${((progressStep + 1) / PROGRESS_STEPS.length) * 100}%`,
@@ -200,37 +200,34 @@ export default function Home() {
               </div>
 
               {/* Steps */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {PROGRESS_STEPS.map((s, i) => {
                   const isDone = i < progressStep;
                   const isCurrent = i === progressStep;
                   return (
-                    <div key={i} className={`flex items-center gap-3 rounded-lg px-4 py-2.5 transition-all duration-300 ${isCurrent ? 'bg-[#fff3eb] border border-[#ff6c00]/30' : ''}`}>
-                      {/* Icon */}
+                    <div key={i} className={`flex items-center gap-4 rounded-xl px-5 py-4 transition-all duration-300 ${isCurrent ? 'bg-pes-orange-light border border-pes-orange/20' : ''}`}>
                       {isDone ? (
-                        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
-                          <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-7 h-7 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
                       ) : isCurrent ? (
-                        <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
-                          <svg className="animate-spin w-5 h-5" style={{ color: '#ff6c00' }} fill="none" viewBox="0 0 24 24">
+                        <div className="w-7 h-7 flex items-center justify-center flex-shrink-0">
+                          <svg className="animate-spin w-6 h-6" style={{ color: '#ff6c00' }} fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                           </svg>
                         </div>
                       ) : (
-                        <div className="w-6 h-6 rounded-full border-2 border-gray-300 flex-shrink-0" />
+                        <div className="w-7 h-7 rounded-full border-2 border-gray-200 flex-shrink-0" />
                       )}
-
-                      {/* Text */}
                       <div>
-                        <p className={`text-sm font-semibold ${isDone ? 'text-green-700' : isCurrent ? 'text-pes-navy' : 'text-gray-400'}`}>
+                        <p className={`text-sm font-semibold ${isDone ? 'text-green-700' : isCurrent ? 'text-pes-navy' : 'text-gray-300'}`}>
                           {s.label}
                         </p>
                         {isCurrent && (
-                          <p className="text-xs text-gray-500 mt-0.5">{s.desc}</p>
+                          <p className="text-xs text-gray-500 mt-1">{s.desc}</p>
                         )}
                       </div>
                     </div>
@@ -243,29 +240,29 @@ export default function Home() {
 
         {/* Error */}
         {status === 'error' && (
-          <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 flex items-start gap-3">
-            <svg className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-red-50 border border-red-200 rounded-2xl px-8 py-6 flex items-start gap-4">
+            <svg className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                 d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div>
-              <p className="text-sm font-bold text-red-800">Generation Failed</p>
-              <p className="text-xs text-red-600 mt-1">{errorMsg}</p>
+              <p className="text-base font-bold text-red-800">Generation Failed</p>
+              <p className="text-sm text-red-600 mt-2 leading-relaxed">{errorMsg}</p>
             </div>
           </div>
         )}
 
         {/* Output */}
         {status === 'done' && output && (
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-            <div className="bg-pes-navy px-6 py-4 flex items-center justify-between flex-wrap gap-3">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="bg-gradient-to-r from-pes-navy to-pes-navy-dark px-8 py-6 flex items-center justify-between flex-wrap gap-4">
               <div>
-                <h2 className="text-white font-semibold text-base">Enhanced Syllabus</h2>
-                <p className="text-blue-200 text-sm mt-0.5">Review highlights, then copy or download as .docx</p>
+                <h2 className="text-white font-bold text-xl">Enhanced Syllabus</h2>
+                <p className="text-blue-200 text-sm mt-2">Review highlights, then copy, download, or email</p>
               </div>
               <ActionBar output={output} docxFilename={docxFilename} />
             </div>
-            <div className="p-6">
+            <div className="p-8">
               <OutputViewer output={output} />
             </div>
           </div>
@@ -273,6 +270,13 @@ export default function Home() {
 
       </main>
 
+      {/* Footer */}
+      <footer className="border-t border-gray-200 mt-16">
+        <div className="max-w-6xl mx-auto px-8 py-6 flex items-center justify-between">
+          <p className="text-xs text-gray-400">PES University Syllabus Enhancement Tool</p>
+          <p className="text-xs text-gray-400">Powered by Claude AI</p>
+        </div>
+      </footer>
     </div>
   );
 }

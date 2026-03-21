@@ -23,8 +23,9 @@ const PROGRAM_GROUPS = [
   {
     group: 'UG Law',
     programs: [
-      { id: 'BA_LLB',  label: 'BA LLB',  sub: 'Bachelor of Arts & Bachelor of Laws' },
-      { id: 'BBA_LLB', label: 'BBA LLB', sub: 'BBA & Bachelor of Laws' },
+      { id: 'BA_LLB',  label: 'BA-LLB (Hons)',  sub: 'Bachelor of Arts & Bachelor of Laws (Honors)' },
+      { id: 'BBA_LLB', label: 'BBA-LLB (Hons)', sub: 'BBA & Bachelor of Laws (Honors)' },
+      { id: 'LLB',     label: 'LLB (Hons)',      sub: 'Bachelor of Laws (Honors)' },
     ],
   },
   {

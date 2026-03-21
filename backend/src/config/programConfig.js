@@ -221,7 +221,7 @@ const PROGRAMS = {
 
   BA_LLB: {
     id: 'BA_LLB',
-    label: 'BA LLB — Bachelor of Arts & Bachelor of Laws',
+    label: 'BA-LLB (Hons) — Bachelor of Arts & Bachelor of Laws (Honors)',
     level: 'UG',
     group: 'UG Law',
     persona: 'senior legal academic curriculum designer specialising in five-year integrated BA LLB programmes at National Law Universities (NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, NLU Jodhpur, Symbiosis Law School Pune)',
@@ -244,7 +244,7 @@ const PROGRAMS = {
 
   BBA_LLB: {
     id: 'BBA_LLB',
-    label: 'BBA LLB — Bachelor of Business Administration & Bachelor of Laws',
+    label: 'BBA-LLB (Hons) — Bachelor of Business Administration & Bachelor of Laws (Honors)',
     level: 'UG',
     group: 'UG Law',
     persona: 'senior legal and business academic curriculum designer specialising in five-year integrated BBA LLB programmes (Symbiosis Law School Pune, NMIMS School of Law, Christ University, O.P. Jindal Global Law School)',
@@ -263,6 +263,29 @@ const PROGRAMS = {
     psos: [
       { id: 'PSO1', statement: '[subject-specific legal/business competency outcome]' },
       { id: 'PSO2', statement: '[relevant PSO for this BBA LLB subject]' },
+    ],
+  },
+
+  LLB: {
+    id: 'LLB',
+    label: 'LLB (Hons) — Bachelor of Laws (Honors)',
+    level: 'UG',
+    group: 'UG Law',
+    persona: 'senior legal academic curriculum designer specialising in three-year LLB programmes at National Law Universities and top law colleges (NLSIU Bangalore, NLU Delhi, Faculty of Law Delhi University, Government Law College Mumbai, ILS Law College Pune)',
+    benchmarks: 'NLSIU Bangalore, NLU Delhi, Faculty of Law Delhi University, Government Law College Mumbai, ILS Law College Pune, Bar Council of India (BCI) prescribed curriculum',
+    bloomsEmphasis: 'Understand (L2), Apply (L3), Analyze (L4), and Evaluate (L5)',
+    teachingMethodology: 'Lectures, Moot Court, Legal Research, Tutorials, Seminar Presentations, Court Visits',
+    extraRules: `- Align course content strictly with the Bar Council of India (BCI) prescribed curriculum requirements for 3-year LLB programmes
+- Include relevant constitutional, statutory, and case law references throughout
+- Emphasise legal reasoning, statutory interpretation, and analytical skills
+- Include Moot Court, Legal Research, or Clinic activities where appropriate to the subject
+- No case studies in the MBA/business sense — instead use legal case analyses and judicial precedents
+- Language and analytical depth must be appropriate for law students
+- LANDMARK CASES (MANDATORY): Each unit must list 5–10 specific landmark judgments (Supreme Court / High Court / relevant international courts) directly relevant to that unit's topics. Format: Case Name (Year) — Court — one-line significance. This is required for BCI accreditation and law programme quality standards.`,
+    pos: COMMON_POS,
+    psos: [
+      { id: 'PSO1', statement: '[subject-specific legal competency outcome]' },
+      { id: 'PSO2', statement: '[relevant PSO for this LLB subject]' },
     ],
   },
 

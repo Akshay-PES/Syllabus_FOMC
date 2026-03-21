@@ -155,13 +155,28 @@ Verify the pedagogical sequence:
 
 ---
 
-## STEP 6 — TIME FEASIBILITY (CRITICAL)
+## STEP 6 — CREDIT HOURS & UNIT STRUCTURE (CRITICAL)
 
-- Ensure ALL topics fit within the allocated contact hours from the original syllabus
+Extract the credit value from the uploaded syllabus. Use this credit-to-hours mapping:
+- 2 Credits = 20 Contact Hours total
+- 3 Credits = 30 Contact Hours total
+- 4 Credits = 40 Contact Hours total
+- 5 Credits = 50 Contact Hours total
+
+The syllabus MUST have exactly 4 units, regardless of the credit value. Distribute hours across the 4 units proportionally based on topic weight, but the sum of all unit hours must equal the total contact hours derived from the credits above.
+
+Example for a 4-credit course (40 hours):
+- Unit 1: 10 hours, Unit 2: 10 hours, Unit 3: 10 hours, Unit 4: 10 hours (equal split)
+- OR Unit 1: 12 hours, Unit 2: 10 hours, Unit 3: 10 hours, Unit 4: 8 hours (weighted by topic complexity)
+
+Rules:
+- If the original syllabus has more or fewer than 4 units, reorganise the content into exactly 4 units
+- Ensure ALL topics fit within the allocated contact hours
 - Do NOT overload any unit beyond its assigned hours
 - Maintain realistic teaching scope — every topic listed must be teachable within the time available
 - If adding new topics, remove or reduce other content proportionally to preserve hour totals
-- The Total row in each unit's topic cluster table must match the original contact hours
+- The Total row in each unit's topic cluster table must sum to the unit's allocated hours
+- The grand total across all 4 units must match the credit-based total (e.g., 40 hours for 4 credits)
 
 ---
 
@@ -226,7 +241,7 @@ The objectives of the course are to enable the students to:
 
 ---
 
-### 4. COURSE OUTCOMES (COs) — Bloom's Taxonomy
+### 4. COURSE OUTCOMES (COs) & SKILL OUTCOMES (SOs) — Bloom's Taxonomy
 
 At the end of this course, students will be able to:
 
@@ -238,6 +253,17 @@ At the end of this course, students will be able to:
 | CO4 | [statement] | [level] | [verbs] |
 
 (Bloom's levels must reflect ${program.bloomsEmphasis})
+
+**Skill Outcomes (SOs):**
+
+| SO | Skill Outcome Statement | Skill Type |
+|---|---|---|
+| SO1 | [practical/technical skill students will acquire] | Technical / Analytical / Software |
+| SO2 | [practical/technical skill students will acquire] | Technical / Analytical / Software |
+| SO3 | [practical/technical skill students will acquire] | Professional / Communication / Leadership |
+
+Skill Types: Technical (tools, software, coding), Analytical (data analysis, problem solving), Professional (communication, teamwork, leadership).
+Each SO must be a concrete, demonstrable skill — not a restatement of a CO. Focus on what students can *do* with their hands and tools after completing the course.
 ${professionalExamAlignment}
 ---
 
@@ -249,7 +275,8 @@ ${poTable}
 
 ### 6. DETAILED COURSE CONTENTS
 
-For EACH unit use this exact structure:
+The syllabus MUST contain exactly 4 units — no more, no less.
+For EACH of the 4 units use this exact structure:
 
 **UNIT X: [Title] | [N] Contact Hours | [CO ref]**
 
@@ -363,11 +390,12 @@ Before producing output, verify ALL of the following. If any check fails, correc
 - [ ] No sections are missing
 - [ ] No extra sections have been added
 - [ ] All tables are present and correctly formatted
-- [ ] Majority of original content has been retained
-- [ ] Only irrelevant, outdated, or redundant content has been removed
+- [ ] Exactly 4 units in Section 6 — no more, no less
+- [ ] Total contact hours across all 4 units = credit-based total (2C=20h, 3C=30h, 4C=40h, 5C=50h)
+- [ ] Each unit's Total row matches its allocated hours
+- [ ] Outdated, irrelevant content has been removed (marked RED) and replaced with current topics
 - [ ] Pedagogy rules from STEP 7 are followed throughout
 - [ ] No topic overlap between units
-- [ ] All topics fit within the original allocated contact hours (Total row matches)
 - [ ] [YELLOW] tags applied to updated/modified content
 - [ ] [GREEN] tags applied to tools/software only
 - [ ] [RED] tags applied to content marked for removal

@@ -32,7 +32,9 @@ router.post('/', async (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
       auth: { user: smtpUser, pass: smtpPass },
     });
 
@@ -62,8 +64,8 @@ router.post('/', async (req, res) => {
 
     res.json({ message: `Syllabus sent to ${to}` });
   } catch (err) {
-    console.error('[email] Send error:', err.message);
-    res.status(500).json({ error: 'Failed to send email. Please try again.' });
+    console.error('[email] Send error:', err.message, err.code, err.response);
+    res.status(500).json({ error: `Failed to send email: ${err.message}` });
   }
 });
 

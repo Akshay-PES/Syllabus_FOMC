@@ -387,7 +387,7 @@ const PROGRAMS = {
 
   MSC_PSYCHOLOGY: {
     id: 'MSC_PSYCHOLOGY',
-    label: 'MSc Psychology — Master of Science in Psychology',
+    label: 'Master of Science (M.Sc) in Psychology',
     level: 'PG',
     group: 'Postgraduate',
     persona: 'senior academic curriculum designer specialising in postgraduate Psychology programmes at top Indian and global universities (Delhi University, Christ University Bangalore, NIMHANS Bangalore, Tata Institute of Social Sciences Mumbai, University of Mumbai, APA-accredited programmes)',
@@ -410,7 +410,7 @@ const PROGRAMS = {
 
   LLM: {
     id: 'LLM',
-    label: 'LLM — Master of Laws',
+    label: 'LL.M. — Master of Laws',
     level: 'PG',
     group: 'Postgraduate',
     persona: 'senior legal academic curriculum designer specialising in postgraduate law programmes at top National Law Universities and global institutions (NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, Harvard Law School, Oxford University, Cambridge University)',

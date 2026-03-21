@@ -3,8 +3,8 @@ const PROGRAM_GROUPS = [
     group: 'Postgraduate',
     programs: [
       { id: 'MBA',             label: 'MBA',             sub: 'Master of Business Administration' },
-      { id: 'MSC_PSYCHOLOGY',  label: 'MSc Psychology',   sub: 'Master of Science in Psychology' },
-      { id: 'LLM',             label: 'LLM',              sub: 'Master of Laws' },
+      { id: 'MSC_PSYCHOLOGY',  label: 'MSc Psychology',   sub: 'Master of Science (M.Sc) in Psychology' },
+      { id: 'LLM',             label: 'LL.M.',            sub: 'Master of Laws' },
     ],
   },
   {

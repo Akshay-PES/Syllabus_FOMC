@@ -23,7 +23,7 @@ const PROGRAM_LABELS = {
   BSC_ECONOMICS:  'BSc Economics',
   BHEM:           'BBA-HEM',
   MSC_PSYCHOLOGY: 'MSc Psychology',
-  LLM:            'LLM',
+  LLM:            'LL.M.',
 };
 
 const BENCHMARKS = {

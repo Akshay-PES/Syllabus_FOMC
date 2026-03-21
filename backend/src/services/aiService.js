@@ -3,7 +3,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const MODEL = 'claude-opus-4-6';
-const MAX_TOKENS = 8192;
+const MAX_TOKENS = 12000;
 
 /**
  * Sends the assembled prompt to Claude and returns the generated text.
@@ -15,6 +15,7 @@ async function generateSyllabus(prompt) {
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: MAX_TOKENS,
+    temperature: 0.3,
     messages: [
       {
         role: 'user',

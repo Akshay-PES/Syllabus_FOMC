@@ -269,6 +269,55 @@ const PROGRAMS = {
     ],
   },
 
+  // ─── POSTGRADUATE ──────────────────────────────────────────────────────────
+
+  MSC_PSYCHOLOGY: {
+    id: 'MSC_PSYCHOLOGY',
+    label: 'MSc Psychology — Master of Science in Psychology',
+    level: 'PG',
+    group: 'Postgraduate',
+    persona: 'senior academic curriculum designer specialising in postgraduate Psychology programmes at top Indian and global universities (Delhi University, Christ University Bangalore, NIMHANS Bangalore, Tata Institute of Social Sciences Mumbai, University of Mumbai, APA-accredited programmes)',
+    benchmarks: 'Delhi University, Christ University Bangalore, NIMHANS Bangalore, TISS Mumbai, Jamia Millia Islamia, APA (American Psychological Association) guidelines for graduate Psychology, UGC model curriculum for MSc Psychology',
+    bloomsEmphasis: 'Apply (L3), Analyze (L4), Evaluate (L5), and Create (L6)',
+    teachingMethodology: 'Lectures, Research Seminars, Lab Practicals, Clinical Fieldwork, Dissertation Supervision, Case Conferences',
+    extraRules: `- Align content with UGC guidelines and APA recommendations for graduate-level Psychology programmes
+- Include advanced research methodology, psychometrics, and evidence-based clinical/applied approaches
+- Emphasise independent research capability, dissertation preparation, and scholarly writing
+- Reference current peer-reviewed research, meta-analyses, and systematic reviews
+- Lab and fieldwork components should include advanced psychological assessment, intervention design, and supervised clinical practice
+- Integrate both classical psychological theories and cutting-edge contemporary research (neuroscience, digital mental health, AI in psychology)
+- Depth and rigour must be appropriate for postgraduate students preparing for clinical practice, research careers, or doctoral studies`,
+    pos: COMMON_POS,
+    psos: [
+      { id: 'PSO1', statement: '[subject-specific psychology competency outcome]' },
+      { id: 'PSO2', statement: '[relevant PSO for this MSc Psychology subject]' },
+    ],
+  },
+
+  LLM: {
+    id: 'LLM',
+    label: 'LLM — Master of Laws',
+    level: 'PG',
+    group: 'Postgraduate',
+    persona: 'senior legal academic curriculum designer specialising in postgraduate law programmes at top National Law Universities and global institutions (NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, Harvard Law School, Oxford University, Cambridge University)',
+    benchmarks: 'NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, NLU Jodhpur, Harvard Law School, Oxford University Faculty of Law, Bar Council of India (BCI) standards for LLM programmes',
+    bloomsEmphasis: 'Apply (L3), Analyze (L4), Evaluate (L5), and Create (L6)',
+    teachingMethodology: 'Lectures, Research Seminars, Moot Court, Legal Research & Writing, Dissertation Supervision, Case Analysis',
+    extraRules: `- Align course content with Bar Council of India (BCI) and UGC standards for postgraduate law programmes
+- Emphasise advanced legal reasoning, critical analysis of legislation and jurisprudence, and independent research
+- Include comparative and international law perspectives throughout
+- Reference landmark Supreme Court, High Court, and international court judgments extensively
+- Include advanced research methodology, legal writing, and dissertation preparation skills
+- Students should engage with primary legal sources: statutes, case reporters, law commission reports, and international treaties
+- Depth and analytical rigour must be appropriate for postgraduate law students preparing for legal practice, academia, or policy roles
+- LANDMARK CASES (MANDATORY): Each unit must list 5–10 specific landmark judgments (Supreme Court / High Court / International Courts / Tribunals) directly relevant to that unit's topics. Format: Case Name (Year) — Court — one-line significance. This is required for BCI accreditation and law programme quality standards.`,
+    pos: COMMON_POS,
+    psos: [
+      { id: 'PSO1', statement: '[subject-specific legal competency outcome]' },
+      { id: 'PSO2', statement: '[relevant PSO for this LLM subject]' },
+    ],
+  },
+
 };
 
 /**

@@ -17,6 +17,8 @@ const PROGRAM_LABELS = {
   BSC_PSYCHOLOGY: 'BSc Psychology',
   BSC_ECONOMICS:  'BSc Economics',
   BHEM:           'BHEM',
+  MSC_PSYCHOLOGY: 'MSc Psychology',
+  LLM:            'LLM',
 };
 
 const BENCHMARKS = {
@@ -31,6 +33,8 @@ const BENCHMARKS = {
   BSC_PSYCHOLOGY: 'Delhi University, Christ University, APA guidelines',
   BSC_ECONOMICS:  'Delhi School of Economics, St. Xavier\'s, Ashoka University',
   BHEM:           'IHM Mumbai, IHM Delhi, WGSHA Manipal, NCHMCT standards',
+  MSC_PSYCHOLOGY: 'Delhi University, Christ University, NIMHANS, TISS, APA guidelines',
+  LLM:            'NLSIU, NLU Delhi, NALSAR, Harvard Law School, Oxford, BCI standards',
 };
 
 export default function Home() {

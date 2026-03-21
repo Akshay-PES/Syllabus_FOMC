@@ -19,7 +19,7 @@ function buildMasterPrompt(program) {
   const coPoHeader     = buildCoPoMatrixHeader(program);
   const coPoRows       = buildCoPoMatrixRows(program);
   const extraRules       = program.extraRules ? `\n${program.extraRules}\n` : '';
-  const isLaw            = program.id === 'BA_LLB' || program.id === 'BBA_LLB';
+  const isLaw            = program.id === 'BA_LLB' || program.id === 'BBA_LLB' || program.id === 'LLM';
   const isProfessional   = program.id === 'BCOM_ACCA' || program.id === 'BCOM_CMA';
 
   const ugCalibration = program.level === 'UG' ? `

@@ -48,13 +48,3 @@ export async function downloadDocx(filename) {
   link.click();
   window.URL.revokeObjectURL(url);
 }
-
-/**
- * Email the generated .docx file to a recipient.
- * @param {string} to - recipient email address
- * @param {string} filename - server-side filename of the generated docx
- */
-export async function emailDocx(to, filename) {
-  const { data } = await axios.post(`${BASE}/email`, { to, filename });
-  return data;
-}

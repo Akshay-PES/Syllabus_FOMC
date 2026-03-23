@@ -268,12 +268,6 @@ One paragraph identifying the higher-order skills, critical thinking, ethical re
 
 Strategies must be concrete and implementable — not generic. Each should directly address a specific AI threat identified above.
 
-**Assessment Redesign: Before vs After**
-
-| CURRENT (AI-Vulnerable) Assessment | RECOMMENDED (AI-Proof) Assessment |
-|---|---|
-| [Current assessment approach that AI can easily solve] | [Redesigned assessment that requires human judgement, formulation, or interpretation] |
-
 ---
 
 ### 4. COURSE OBJECTIVES

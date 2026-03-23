@@ -291,7 +291,6 @@ export default function Home() {
       <footer className="border-t border-gray-200 mt-16">
         <div className="max-w-6xl mx-auto px-8 py-6 flex items-center justify-between">
           <p className="text-xs text-gray-400">PES University Syllabus Enhancement Tool</p>
-          <p className="text-xs text-gray-400">Powered by Claude AI</p>
         </div>
       </footer>
     </div>

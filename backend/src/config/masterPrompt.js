@@ -242,7 +242,7 @@ Generate the complete improved syllabus using EXACTLY the following 12 sections 
 
 ### 2. PREAMBLE
 
-One professional paragraph. Describe the course purpose, positioning within the ${program.label} programme, integration of classical and modern methods, and benchmarking against ${program.benchmarks}. Appropriate for ${program.level} level students.
+One professional paragraph. Describe the course purpose, positioning within the ${program.label} programme, and integration of classical and modern methods. Appropriate for ${program.level} level students. Do NOT mention benchmark institutions here — benchmarking details appear in Section 11.
 
 ---
 

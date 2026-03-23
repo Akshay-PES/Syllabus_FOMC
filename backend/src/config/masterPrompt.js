@@ -242,11 +242,41 @@ Generate the complete improved syllabus using EXACTLY the following 12 sections 
 
 ### 2. PREAMBLE
 
-One professional paragraph. Describe the course purpose, positioning within the ${program.label} programme, and integration of classical and modern methods. Appropriate for ${program.level} level students. Do NOT mention benchmark institutions here — benchmarking details appear in Section 11.
+One professional paragraph. Describe the course purpose, positioning within the ${program.label} programme, and integration of classical and modern methods. Appropriate for ${program.level} level students. Do NOT mention benchmark institutions here — benchmarking details appear in Section 12.
 
 ---
 
-### 3. COURSE OBJECTIVES
+### 3. AI DISRUPTION & MITIGATION ANALYSIS
+
+Analyse this course through the lens of AI disruption. This section helps faculty and curriculum committees understand which parts of the course are vulnerable to AI automation and how to future-proof the syllabus.
+
+**⚠ AI Threat Assessment:**
+One paragraph identifying which specific topics, skills, or computations in this course can now be performed instantly by AI/software tools (e.g., ChatGPT, Copilot, Wolfram Alpha, solver tools, AI writing assistants). Be specific — name the tools and the topics they threaten.
+
+**✓ What Remains AI-Proof:**
+One paragraph identifying the higher-order skills, critical thinking, ethical reasoning, judgement, and human-centric competencies in this course that AI cannot replace. Focus on problem formulation, contextual interpretation, ethical implications, and professional judgement.
+
+**◌ Mitigation Strategies (Implement for 2026 Batch):**
+
+| # | Strategy |
+|---|---|
+| 1 | [Specific, actionable mitigation — e.g., redesign assessment, shift from computation to formulation] |
+| 2 | [Strategy] |
+| 3 | [Strategy] |
+| 4 | [Strategy] |
+| 5 | [Strategy] |
+
+Strategies must be concrete and implementable — not generic. Each should directly address a specific AI threat identified above.
+
+**Assessment Redesign: Before vs After**
+
+| CURRENT (AI-Vulnerable) Assessment | RECOMMENDED (AI-Proof) Assessment |
+|---|---|
+| [Current assessment approach that AI can easily solve] | [Redesigned assessment that requires human judgement, formulation, or interpretation] |
+
+---
+
+### 4. COURSE OBJECTIVES
 
 The objectives of the course are to enable the students to:
 
@@ -259,7 +289,7 @@ The objectives of the course are to enable the students to:
 
 ---
 
-### 4. COURSE OUTCOMES (COs) & SKILL OUTCOMES (SOs) — Bloom's Taxonomy
+### 5. COURSE OUTCOMES (COs) & SKILL OUTCOMES (SOs) — Bloom's Taxonomy
 
 At the end of this course, students will be able to:
 
@@ -285,13 +315,13 @@ Each SO must be a concrete, demonstrable skill — not a restatement of a CO. Fo
 ${professionalExamAlignment}
 ---
 
-### 5. PROGRAMME OUTCOMES (POs) — ${program.label}
+### 6. PROGRAMME OUTCOMES (POs) — ${program.label}
 
 ${poTable}
 
 ---
 
-### 6. DETAILED COURSE CONTENTS
+### 7. DETAILED COURSE CONTENTS
 
 The syllabus MUST contain exactly 4 units — no more, no less.
 For EACH of the 4 units use this exact structure:
@@ -312,7 +342,7 @@ For EACH of the 4 units use this exact structure:
 ${lawCaseLawInstruction}
 ---
 
-### 7. CO-PO-PSO MAPPING MATRIX (Bloom's Taxonomy)
+### 8. CO-PO-PSO MAPPING MATRIX (Bloom's Taxonomy)
 
 Correlation Level: 3 = High, 2 = Medium, 1 = Low, – = No Correlation
 
@@ -328,7 +358,7 @@ ${coPoRows}
 
 ---
 
-### 8. BLOOM'S TAXONOMY ALIGNMENT SUMMARY
+### 9. BLOOM'S TAXONOMY ALIGNMENT SUMMARY
 
 | CO | Bloom's Level | Key Verbs | Assessment | Sample Activity |
 |---|---|---|---|---|
@@ -339,7 +369,7 @@ ${coPoRows}
 
 ---
 
-### 9. ASSESSMENT PLAN
+### 10. ASSESSMENT PLAN
 
 | Component | Weightage | COs Assessed | Bloom's Level |
 |---|---|---|---|
@@ -350,7 +380,7 @@ ${coPoRows}
 
 ---
 
-### 10. TEXTBOOKS AND REFERENCES
+### 11. TEXTBOOKS AND REFERENCES
 
 Rules for this section:
 - REMOVE outdated textbooks — mark them [RED] and replace with current alternatives
@@ -373,13 +403,13 @@ Rules for this section:
 
 ---
 
-### 11. SYLLABUS REVISION SUMMARY
+### 12. SYLLABUS REVISION SUMMARY
 
 **% Change Calculation Method (MANDATORY):**
 Calculate the "% Change vs. Previous Year" based ONLY on changes in these sections:
-- Section 6: Detailed Course Contents (all 4 units — topic additions, removals, modifications)
+- Section 7: Detailed Course Contents (all 4 units — topic additions, removals, modifications)
 - AI Tools/Software added or changed across all units
-- Section 10: Textbooks and Reference Books (additions, removals, replacements)
+- Section 11: Textbooks and Reference Books (additions, removals, replacements)
 
 Do NOT count changes in Preamble, Objectives, COs, POs, Assessment Plan, or other structural sections towards the percentage.
 
@@ -402,7 +432,7 @@ Apply colour tags inside the Details column cells as follows:
 
 ---
 
-### 12. APPROVAL
+### 13. APPROVAL
 
 | Prepared By | Reviewed By | Approved By | Date |
 |---|---|---|---|
@@ -414,11 +444,11 @@ Apply colour tags inside the Details column cells as follows:
 
 Before producing output, verify ALL of the following. If any check fails, correct it first:
 
-- [ ] Structure exactly matches the 12-section format above
+- [ ] Structure exactly matches the 13-section format above
 - [ ] No sections are missing
 - [ ] No extra sections have been added
 - [ ] All tables are present and correctly formatted
-- [ ] Exactly 4 units in Section 6 — no more, no less
+- [ ] Exactly 4 units in Section 7 — no more, no less
 - [ ] Total contact hours across all 4 units = credit-based total (2C=20h, 3C=30h, 4C=40h, 5C=50h)
 - [ ] Each unit's Total row matches its allocated hours
 - [ ] Outdated, irrelevant content has been removed (marked RED) and replaced with current topics

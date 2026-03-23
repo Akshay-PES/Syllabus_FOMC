@@ -181,7 +181,7 @@ export default function Home() {
               {[
                 { icon: '\uD83D\uDD0D', label: 'Evaluates',  desc: 'Coverage, rigor & AI integration' },
                 { icon: '\u270F\uFE0F', label: 'Refines',    desc: 'Improves topics selectively' },
-                { icon: '\uD83D\uDCCB', label: 'Formats',    desc: `Standard 12-section ${programLabel} format` },
+                { icon: '\uD83D\uDCCB', label: 'Formats',    desc: `Standard 13-section ${programLabel} format` },
               ].map(({ icon, label, desc }) => (
                 <div key={label} className="flex items-start gap-4 bg-[#f7f8fa] rounded-xl p-5 border border-gray-100">
                   <span className="text-2xl">{icon}</span>

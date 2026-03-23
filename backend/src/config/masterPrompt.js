@@ -132,6 +132,24 @@ Enhance the following while keeping the original structure:
 - Practical applications — ensure each unit has real-world use cases appropriate for ${program.label}
 - Assessment methods — align weightages and components with COs and Bloom's levels
 
+**PROGRAMME-CONTEXT AWARENESS (CRITICAL):**
+The same course title (e.g., Geopolitics, Business Analytics, Research Methods) can appear across very different programmes. You MUST tailor ALL content — topics, depth, examples, tools, applications, and assessments — to fit the specific programme context of ${program.label}. Do NOT produce a generic syllabus.
+
+Apply these programme-context rules:
+- **MBA / PG programmes**: Emphasise strategic thinking, leadership decision-making, managerial frameworks, C-suite perspective, global case analyses, and executive-level applications. Depth must be postgraduate-level.
+- **BCom / BCom ACCA / CMA / CFA / CA**: Emphasise accounting, financial reporting, regulatory compliance, taxation, audit implications, and professional exam relevance. Frame every topic through a commerce/finance lens. Tools should be accounting/ERP/finance-oriented.
+- **BBA / BBA Analytics / BBA Sports**: Emphasise operational management, entrepreneurship, functional business applications, and industry exposure. Analytics variant must integrate data tools; Sports variant must connect to sports industry.
+- **BA-LLB / BBA-LLB / LLB / LL.M.**: Emphasise legal frameworks, statutes, case law, regulatory analysis, and judicial reasoning. Every topic must connect to relevant legislation and landmark judgments.
+- **BSc Psychology / MSc Psychology**: Emphasise empirical research, psychological theories, clinical/applied methods, assessment tools, and evidence-based practice. MSc must be research-intensive.
+- **BSc Economics**: Emphasise economic models, quantitative analysis, econometric methods, policy implications, and theoretical rigour.
+- **BSc JMC**: Emphasise media production, journalism ethics, digital communication, content creation, and media law.
+- **BBA-HEM**: Emphasise hospitality operations, event planning, food & beverage management, and service industry standards.
+
+Example: A "Geopolitics" course should focus on:
+- MBA → geopolitical risk in global business strategy, supply chain disruption, FDI decisions
+- BCom ACCA → impact of geopolitical events on trade regulations, IFRS implications, cross-border taxation
+- BSc Economics → trade theory, sanctions modelling, development economics, political economy frameworks
+
 Ensure the syllabus is:
 - Appropriate for ${program.label} students
 - Industry and professionally relevant

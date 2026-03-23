@@ -197,6 +197,7 @@ function makeSectionHeading(raw) {
 // ─── Unit header box (navy, white text, full width) ───────────────────────────
 function makeUnitHeader(raw) {
   const text = raw.replace(/^\*\*/,'').replace(/\*\*$/, '').trim();
+  const runs = parseTextRuns(text, { defaultBold: true, size: 20, whiteText: true });
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
     borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER, insideH: NO_BORDER, insideV: NO_BORDER },
@@ -205,7 +206,7 @@ function makeUnitHeader(raw) {
         children: [new Paragraph({
           spacing: { before: 100, after: 100 },
           indent: { left: 120 },
-          children: [new TextRun({ text, bold: true, color: C.WHITE, size: 20 })],
+          children: runs,
         })],
         shading: { type: ShadingType.CLEAR, color: 'auto', fill: C.NAVY },
         borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER },

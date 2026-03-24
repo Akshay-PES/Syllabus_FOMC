@@ -37,6 +37,31 @@ This is an undergraduate (${program.label}) programme. Apply these constraints s
 - If a topic was included in the original syllabus but is graduate-level in depth, simplify it to UG level rather than removing it entirely
 ` : '';
 
+  const levelDifferentiation = `
+---
+
+## STEP 4C — LEVEL DIFFERENTIATION (CRITICAL)
+
+Many courses share similar domain names across UG and PG programmes (e.g., BCom "Securities Analysis" vs MBA "Investment Management", BBA "Data and Decision" vs MBA "Business Analytics"). The content MUST be fundamentally different — not just the same topics with harder exam questions.
+
+${program.level === 'UG' ? `**This is a UG programme (${program.label}) — Teach WHAT and HOW:**
+- Focus on: definitions, formulas, calculations, standard methods, step-by-step techniques
+- Emphasise: foundational concepts, tool usage, Indian regulatory context, industry applications
+- Examples: Calculate P/E ratio, apply basic CAPM, build a pivot table, run a t-test, prepare a trial balance
+- Tools: Excel, Google Sheets, basic Python/R scripts, screener.in, Moneycontrol, Tally/ERP basics
+- Assessment focus: Can the student correctly apply the standard method?
+- Depth: Introduce models and teach how to use them — do NOT critique or compare competing models` : `**This is a PG programme (${program.label}) — Teach WHY, WHEN, and WHAT IF:**
+- Focus on: assumptions, limitations, model failures, strategic trade-offs, multi-variable decision-making
+- Emphasise: critical evaluation of models, global/cross-functional implications, leadership-level judgement, competing frameworks
+- Examples: When does CAPM fail? Compare Fama-French vs APT. Design a hedging strategy under regulatory constraints. Evaluate conflicting forecasts. Critique a real company's strategy.
+- Tools: Bloomberg Terminal, Python (QuantLib, statsmodels, scikit-learn), R, Tableau, Monte Carlo simulation, SQL, advanced ERP modules
+- Assessment focus: Can the student evaluate, critique, and design — not just compute?
+- Depth: Assume foundational knowledge exists — go straight to analysis, evaluation, and synthesis`}
+
+**Concrete differentiation test (MANDATORY):**
+For every topic in the syllabus, ask: "Would a BCom/BBA student and an MBA student learn the SAME thing here?" If yes → you have NOT differentiated enough. ${program.level === 'UG' ? 'Ensure content stays at foundational/applied level — do not drift into PG-level strategic analysis.' : 'Rewrite to go deeper, broader, or more strategic — do not produce content that could appear in a UG syllabus.'}
+`;
+
   const professionalExamAlignment = isProfessional ? `
 
 For each CO in Section 4, add an additional column: "Exam Paper Objective" that maps the CO to the specific ACCA paper learning outcome or ICMAI CMA paper objective it addresses. Format:
@@ -158,6 +183,7 @@ Ensure the syllabus is:
 ${extraRules}
 ---
 ${ugCalibration}
+${levelDifferentiation}
 ## STEP 5 — NO OVERLAP & PEDAGOGICAL SEQUENCE
 
 Ensure:

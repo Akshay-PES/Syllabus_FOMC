@@ -230,25 +230,33 @@ ${caseStudyRule}
 
 ---
 
-## STEP 8 — COLOUR CODING (APPLY TO ALL CONTENT)
+## STEP 8 — COLOUR CODING (APPLY SPARINGLY — CRITICAL)
 
-Apply these tags inline at the word, phrase, or sentence level — NOT around entire sections:
+Apply these tags inline at the word, phrase, or sentence level — NOT around entire paragraphs or units:
 
-- [YELLOW]...[/YELLOW] → Content that has been UPDATED or MODIFIED from the original (rewording, refinement, improvement)
-- [GREEN]...[/GREEN]   → AI TOOLS specifically — any mention of AI/ML tools, software, platforms, or automated frameworks
-- [RED]...[/RED]       → Content that EXISTS in the original but should be REMOVED (outdated, redundant, or replaced)
+- [YELLOW]...[/YELLOW] → ONLY content that you have genuinely CHANGED, ADDED, or REWORDED compared to the original uploaded syllabus
+- [GREEN]...[/GREEN]   → ONLY AI/ML tool names, software, and platforms (e.g., ChatGPT, Python, Tableau) — not surrounding sentences
+- [RED]...[/RED]       → ONLY content that EXISTS in the original but should be REMOVED
+
+**CRITICAL — What must NOT be tagged:**
+- Topics, sentences, or phrases that are RETAINED AS-IS from the original syllabus → NO TAG
+- Standard structural text (headings, labels, table headers, section titles) → NO TAG
+- Course information fields that are unchanged (Course Title, Code, Credits) → NO TAG
+- Preamble text that is standard academic language → NO TAG (unless you significantly rewrote it)
+- Unit titles that are unchanged → NO TAG
+- If you only slightly reworded a topic for clarity, tag ONLY the changed words — not the entire sentence
 
 Rules:
-- Every unit must have all three types of tags applied where relevant
-- Apply at granular level — individual tool names, topic phrases, or sentences
-- Do NOT wrap entire paragraphs in a single tag
-- Content unchanged and not a tool needs no tag
+- Apply at the most granular level possible — individual words, tool names, or short phrases
+- Do NOT wrap entire topic paragraphs in a single [YELLOW] tag
+- Do NOT tag content just because you reorganised it into a different unit — only tag if the content itself changed
+- Unit topic paragraphs: tag only the NEW or MODIFIED phrases within them, leave original phrases untagged
 
 ---
 
 ## STEP 9 — FINAL OUTPUT FORMAT
 
-Generate the complete improved syllabus using EXACTLY the following 12 sections in this order. Use pipe-delimited markdown tables. Do not add, remove, or reorder any section.
+Generate the complete improved syllabus using EXACTLY the following 13 sections in this order. Use pipe-delimited markdown tables. Do not add, remove, or reorder any section.
 
 ---
 

@@ -25,8 +25,22 @@ const THIN = (color = C.BORDER) => ({ style: BorderStyle.SINGLE, size: 4, color 
 const NO_BORDER = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
 const ALL_THIN = { top: THIN(), bottom: THIN(), left: THIN(), right: THIN() };
 
+// ─── Flatten nested colour tags from inside out ──────────────────────────────
+// e.g. [YELLOW]text [GREEN]tool[/GREEN] more[/YELLOW] → separate runs
+function flattenTags(text) {
+  const innerTag = /\[(YELLOW|GREEN|RED)\]((?:(?!\[(?:YELLOW|GREEN|RED)\])[\s\S])*?)\[\/\1\]/g;
+  let prev = '';
+  let result = text;
+  while (prev !== result) {
+    prev = result;
+    result = result.replace(innerTag, (_, tag, content) => `\x01${tag}\x02${content}\x01/${tag}\x02`);
+  }
+  return result;
+}
+
 // ─── Text run parser ──────────────────────────────────────────────────────────
 // Handles **bold**, [YELLOW]...[/YELLOW], [GREEN]...[/GREEN], [RED]...[/RED]
+// Supports nested tags by flattening them first
 function parseTextRuns(raw, opts = {}) {
   const {
     defaultBold  = false,
@@ -36,11 +50,11 @@ function parseTextRuns(raw, opts = {}) {
   } = opts;
 
   const baseColor = whiteText ? C.WHITE : defaultColor;
-  const text = (raw || '').trim();
+  const text = flattenTags((raw || '').trim());
   const runs = [];
 
-  // Regex: **bold** OR [TAG]content[/TAG]
-  const RE = /\*\*([\s\S]*?)\*\*|\[(YELLOW|GREEN|RED)\]([\s\S]*?)\[\/(YELLOW|GREEN|RED)\]/g;
+  // Regex: **bold** OR flattened marker \x01TAG\x02content\x01/TAG\x02
+  const RE = /\*\*([\s\S]*?)\*\*|\x01(YELLOW|GREEN|RED)\x02([\s\S]*?)\x01\/\2\x02/g;
   let lastIdx = 0;
   let m;
 

@@ -1,19 +1,31 @@
 function parseHighlights(text) {
   const parts = [];
-  const regex = /\[(YELLOW|GREEN|RED)\]([\s\S]*?)\[\/(YELLOW|GREEN|RED)\]/g;
+  // Match innermost tags first (no nested tags inside the content)
+  const regex = /\[(YELLOW|GREEN|RED)\]((?:(?!\[(?:YELLOW|GREEN|RED)\])[\s\S])*?)\[\/\1\]/g;
+  let remaining = text;
+
+  // Iteratively resolve nested tags from inside out
+  let prev = '';
+  while (prev !== remaining) {
+    prev = remaining;
+    remaining = remaining.replace(regex, (_, tag, content) => `\x01${tag}\x02${content}\x01/${tag}\x02`);
+  }
+
+  // Now parse the flattened markers
+  const markerRegex = /\x01(YELLOW|GREEN|RED)\x02([\s\S]*?)\x01\/\1\x02/g;
   let lastIndex = 0;
   let match;
 
-  while ((match = regex.exec(text)) !== null) {
+  while ((match = markerRegex.exec(remaining)) !== null) {
     if (match.index > lastIndex) {
-      parts.push({ type: 'plain', text: text.slice(lastIndex, match.index) });
+      parts.push({ type: 'plain', text: remaining.slice(lastIndex, match.index) });
     }
     parts.push({ type: match[1], text: match[2] });
-    lastIndex = regex.lastIndex;
+    lastIndex = markerRegex.lastIndex;
   }
 
-  if (lastIndex < text.length) {
-    parts.push({ type: 'plain', text: text.slice(lastIndex) });
+  if (lastIndex < remaining.length) {
+    parts.push({ type: 'plain', text: remaining.slice(lastIndex) });
   }
   return parts;
 }

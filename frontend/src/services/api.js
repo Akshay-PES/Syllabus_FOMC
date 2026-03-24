@@ -26,7 +26,7 @@ export async function generateSyllabus(syllabusFilename, syllabusType, programId
   const { data } = await axios.post(
     `${BASE}/generate`,
     { syllabusFilename, syllabusType, programId },
-    { timeout: 180000 } // 3 min for large syllabi
+    { timeout: 300000 } // 5 min for large syllabi
   );
   return data;
 }

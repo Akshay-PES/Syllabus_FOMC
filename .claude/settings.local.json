@@ -10,7 +10,10 @@
       "Bash(node -e \"console.log\\(require\\(''pdf-parse/package.json''\\).version\\)\")",
       "Bash(node -e \"console.log\\(require\\(''/Users/akshayaradhya/Desktop/syllabus/backend/node_modules/multer/package.json''\\).version\\)\")",
       "Bash(lsof -ti:5001)",
-      "Bash(xargs kill:*)"
+      "Bash(xargs kill:*)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

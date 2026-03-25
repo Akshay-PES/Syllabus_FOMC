@@ -44,28 +44,33 @@ An AI-powered web application that evaluates and improves university syllabi acr
 ### UG Commerce & Management
 | Programme | Benchmarked Against |
 |-----------|-------------------|
-| BCom | SRCC, Symbiosis, LSE, NUS, UGC guidelines |
-| BCom ACCA | ACCA qualification standards & top commerce institutions |
-| BCom CMA | ICMAI CMA standards & top commerce institutions |
-| BBA | Symbiosis, IIM Indore IPM, Babson College, UGC guidelines |
-| BBA Analytics | NMIMS, Symbiosis, Great Lakes, MIT |
+| BCom | MIT, Stanford, LSE, Oxford, Melbourne, NUS, UGC guidelines |
+| BCom ACCA | ACCA Global, MIT, LSE, Oxford, Melbourne, NUS |
+| BCom CMA | ICMAI, IMA (USA), MIT, Stanford, LSE, Oxford |
+| BCom CFA | CFA Institute, MIT, Stanford, LSE, Oxford, NUS |
+| BCom CA | ICAI, MIT, LSE, Oxford, Melbourne, NUS |
+| BBA | Harvard, INSEAD, London Business School, MIT Sloan, Cambridge, NUS |
+| BBA Analytics | MIT, Stanford, ETH Zurich, Carnegie Mellon, Oxford |
+| BBA Sports | Loughborough, Sydney, Queensland, UBC, KU Leuven |
 
 ### UG Law
 | Programme | Benchmarked Against |
 |-----------|-------------------|
-| BA LLB | NLSIU, NLU Delhi, NALSAR, BCI curriculum |
-| BBA LLB | Symbiosis Law School, NMIMS School of Law, BCI curriculum |
+| BA LLB | Oxford, Cambridge, Harvard Law, Yale Law, LSE, NUS, BCI |
+| BBA LLB | Oxford, Cambridge, Harvard Law, Yale Law, LSE, NUS, BCI |
+| LLB | Oxford, Cambridge, Harvard Law, Yale Law, LSE, NUS, BCI |
 
 ### UG Science / Social Science
 | Programme | Benchmarked Against |
 |-----------|-------------------|
-| BSc Psychology | Delhi University, FLAME University, APA guidelines |
-| BSc Economics | Delhi School of Economics, St. Xavier's, Ashoka University |
+| BSc Psychology | Harvard, Stanford, Oxford, Cambridge, Amsterdam, APA guidelines |
+| BSc Economics | MIT, Harvard, Stanford, LSE, Oxford, Cambridge, ETH Zurich |
+| BSc JMC | Amsterdam, LSE, USC, NTU Singapore, Melbourne, Goldsmiths |
 
 ### UG Hospitality
 | Programme | Benchmarked Against |
 |-----------|-------------------|
-| BHEM | IHM Mumbai, IHM Delhi, WGSHA Manipal, NCHMCT standards |
+| BHEM | EHL Lausanne, Cornell, Hong Kong PolyU, UNLV, Les Roches, Surrey |
 
 ---
 

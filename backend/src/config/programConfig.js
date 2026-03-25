@@ -50,8 +50,8 @@ const PROGRAMS = {
     label: 'BCom (General / Hons.) — Bachelor of Commerce',
     level: 'UG',
     group: 'UG Commerce',
-    persona: 'senior academic curriculum designer specialising in undergraduate Commerce programmes at top Indian and international universities (SRCC Delhi University, Christ University Bangalore, Symbiosis College Pune, London School of Economics, University of Melbourne, National University of Singapore)',
-    benchmarks: 'SRCC (Delhi University), Christ University Bangalore, Symbiosis College Pune, London School of Economics (LSE), University of Melbourne, National University of Singapore (NUS), UGC model curriculum for Commerce',
+    persona: 'senior academic curriculum designer specialising in undergraduate Commerce programmes at top Indian and international universities (SRCC Delhi University, Symbiosis College Pune, London School of Economics, University of Melbourne, National University of Singapore)',
+    benchmarks: 'SRCC (Delhi University), Symbiosis College Pune, London School of Economics (LSE), University of Melbourne, National University of Singapore (NUS), UGC model curriculum for Commerce',
     bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
     teachingMethodology: 'Lectures, Tutorials, Practical/Lab Sessions, Group Assignments',
     extraRules: `- Align content with UGC (University Grants Commission) guidelines for undergraduate Commerce programmes
@@ -71,7 +71,7 @@ const PROGRAMS = {
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in ACCA-integrated undergraduate Commerce programmes, with deep knowledge of the ACCA qualification structure (Applied Knowledge, Applied Skills, Strategic Professional) and top ACCA-registered institutions globally',
-    benchmarks: 'ACCA Global Qualification Curriculum, Christ University Bangalore (ACCA), Symbiosis College Pune, SRCC Delhi, Kaplan ACCA (UK), BPP University (UK), Oxford Brookes University (ACCA partnership), UGC guidelines',
+    benchmarks: 'ACCA Global Qualification Curriculum, Symbiosis College Pune, SRCC Delhi, Kaplan ACCA (UK), BPP University (UK), Oxford Brookes University (ACCA partnership), UGC guidelines',
     bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
     teachingMethodology: 'Lectures, Tutorials, ACCA Practice Sessions, Case Exercises, Group Assignments',
     extraRules: `- Align course content with the relevant ACCA paper(s) from: Applied Knowledge (BT, MA, FA), Applied Skills (LW, PM, TX, FR, AA, FM), or Strategic Professional (SBL, SBR, AFM, APM, ATX, AAA) levels
@@ -93,7 +93,7 @@ const PROGRAMS = {
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in CMA-integrated undergraduate Commerce programmes, with deep knowledge of the ICMAI (Institute of Cost Accountants of India) and IMA (Institute of Management Accountants, USA) CMA qualification structures',
-    benchmarks: 'ICMAI CMA Qualification Curriculum, IMA (USA) CMA Curriculum, SRCC Delhi University, Christ University Bangalore, Symbiosis College Pune, University of Illinois (Cost Accounting), UGC model Commerce curriculum',
+    benchmarks: 'ICMAI CMA Qualification Curriculum, IMA (USA) CMA Curriculum, SRCC Delhi University, Symbiosis College Pune, University of Illinois (Cost Accounting), UGC model Commerce curriculum',
     bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
     teachingMethodology: 'Lectures, Tutorials, Cost Accounting Practicals, Group Assignments',
     extraRules: `- Align course content with the relevant ICMAI CMA Foundation or Intermediate paper(s) as applicable
@@ -115,7 +115,7 @@ const PROGRAMS = {
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in CFA-integrated undergraduate Commerce programmes, with deep knowledge of the CFA Institute qualification structure (CFA Level I, II, III) and top finance-oriented institutions globally',
-    benchmarks: 'CFA Institute Curriculum, SRCC Delhi University, Christ University Bangalore, NMIMS Mumbai, NYU Stern School of Business, London Business School, University of Toronto (Rotman), UGC model Commerce curriculum',
+    benchmarks: 'CFA Institute Curriculum, SRCC Delhi University, NMIMS Mumbai, NYU Stern School of Business, London Business School, University of Toronto (Rotman), UGC model Commerce curriculum',
     bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
     teachingMethodology: 'Lectures, Tutorials, Financial Modelling Labs, Bloomberg Terminal Sessions, Group Assignments',
     extraRules: `- Align course content with CFA Institute's Candidate Body of Knowledge (CBOK) across relevant topic areas
@@ -138,7 +138,7 @@ const PROGRAMS = {
     level: 'UG',
     group: 'UG Commerce',
     persona: 'senior academic curriculum designer specialising in CA-embedded undergraduate Commerce programmes, with deep knowledge of the ICAI (Institute of Chartered Accountants of India) CA qualification structure and global accounting standards (IFRS, US GAAP)',
-    benchmarks: 'ICAI CA Curriculum, SRCC Delhi University, Christ University Bangalore, Symbiosis College Pune, Deakin University (Australia), University of Warwick (UK), IFRS Foundation standards, UGC model Commerce curriculum',
+    benchmarks: 'ICAI CA Curriculum, SRCC Delhi University, Symbiosis College Pune, Deakin University (Australia), University of Warwick (UK), IFRS Foundation standards, UGC model Commerce curriculum',
     bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
     teachingMethodology: 'Lectures, Tutorials, Accounting Practicals, Audit Simulations, Group Assignments',
     extraRules: `- Align course content with the relevant ICAI CA Foundation or Intermediate paper(s) as applicable
@@ -159,8 +159,8 @@ const PROGRAMS = {
     label: 'BBA (General / Honors) — Bachelor of Business Administration',
     level: 'UG',
     group: 'UG Commerce',
-    persona: 'senior academic curriculum designer specialising in undergraduate Business Administration programmes at top Indian and international institutions (Christ University Bangalore, Symbiosis International University, IIM Indore IPM, University of Michigan, Babson College, NUS Business School)',
-    benchmarks: 'Christ University Bangalore, Symbiosis International University Pune, IIM Indore (IPM), NMIMS Mumbai, Babson College (USA), University of Michigan (Ross), NUS Business School (Singapore), UGC model curriculum for BBA',
+    persona: 'senior academic curriculum designer specialising in undergraduate Business Administration programmes at top Indian and international institutions (Symbiosis International University, IIM Indore IPM, University of Michigan, Babson College, NUS Business School)',
+    benchmarks: 'Symbiosis International University Pune, IIM Indore (IPM), NMIMS Mumbai, Babson College (USA), University of Michigan (Ross), NUS Business School (Singapore), UGC model curriculum for BBA',
     bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
     teachingMethodology: 'Lectures, Tutorials, Business Simulations, Group Projects, Industry Visits',
     extraRules: `- Align content with UGC guidelines for undergraduate Business Administration programmes
@@ -179,8 +179,8 @@ const PROGRAMS = {
     label: 'BBA (Hons) in Business Analytics — Bachelor of Business Administration (Hons) in Business Analytics',
     level: 'UG',
     group: 'UG Commerce',
-    persona: 'senior academic curriculum designer specialising in undergraduate Business Analytics programmes at top Indian and international institutions (Christ University Bangalore, NMIMS Mumbai, Symbiosis International University, MIT, Carnegie Mellon, University of Texas at Austin)',
-    benchmarks: 'Christ University Bangalore, NMIMS Mumbai, Symbiosis International University Pune, Great Lakes Institute of Management, MIT (Analytics), Carnegie Mellon (Business Analytics), University of Texas at Austin, UGC model curriculum',
+    persona: 'senior academic curriculum designer specialising in undergraduate Business Analytics programmes at top Indian and international institutions (NMIMS Mumbai, Symbiosis International University, MIT, Carnegie Mellon, University of Texas at Austin)',
+    benchmarks: 'NMIMS Mumbai, Symbiosis International University Pune, Great Lakes Institute of Management, MIT (Analytics), Carnegie Mellon (Business Analytics), University of Texas at Austin, UGC model curriculum',
     bloomsEmphasis: 'Understand (L2), Apply (L3), Analyze (L4), and introductory Evaluate (L5)',
     teachingMethodology: 'Lectures, Software Labs (Python/R/Excel/Tableau/Power BI), Group Projects, Industry Datasets',
     extraRules: `- Integrate analytics and data tools practically throughout the curriculum
@@ -296,8 +296,8 @@ const PROGRAMS = {
     label: 'BSc Psychology (General / Honors) — Bachelor of Science in Psychology',
     level: 'UG',
     group: 'UG Science / Social Science',
-    persona: 'senior academic curriculum designer specialising in undergraduate Psychology programmes at top Indian and international universities (Delhi University, Christ University Bangalore, FLAME University, University of Melbourne, University of British Columbia, University College London)',
-    benchmarks: 'Delhi University, Christ University Bangalore, FLAME University, University of Melbourne (Australia), University of British Columbia (Canada), University College London (UCL), APA (American Psychological Association) guidelines for undergraduate Psychology, UGC model curriculum',
+    persona: 'senior academic curriculum designer specialising in undergraduate Psychology programmes at top Indian and international universities (Delhi University, FLAME University, University of Melbourne, University of British Columbia, University College London)',
+    benchmarks: 'Delhi University, FLAME University, University of Melbourne (Australia), University of British Columbia (Canada), University College London (UCL), APA (American Psychological Association) guidelines for undergraduate Psychology, UGC model curriculum',
     bloomsEmphasis: 'Remember (L1), Understand (L2), Apply (L3), and Analyze (L4)',
     teachingMethodology: 'Lectures, Tutorials, Lab Practicals, Research Projects, Seminar Presentations',
     extraRules: `- Align content with UGC guidelines and APA recommendations for undergraduate Psychology programmes
@@ -390,8 +390,8 @@ const PROGRAMS = {
     label: 'Master of Science (M.Sc) in Psychology',
     level: 'PG',
     group: 'Postgraduate',
-    persona: 'senior academic curriculum designer specialising in postgraduate Psychology programmes at top Indian and global universities (Delhi University, Christ University Bangalore, NIMHANS Bangalore, Tata Institute of Social Sciences Mumbai, University of Mumbai, APA-accredited programmes)',
-    benchmarks: 'Delhi University, Christ University Bangalore, NIMHANS Bangalore, TISS Mumbai, Jamia Millia Islamia, APA (American Psychological Association) guidelines for graduate Psychology, UGC model curriculum for MSc Psychology',
+    persona: 'senior academic curriculum designer specialising in postgraduate Psychology programmes at top Indian and global universities (Delhi University, NIMHANS Bangalore, Tata Institute of Social Sciences Mumbai, University of Mumbai, APA-accredited programmes)',
+    benchmarks: 'Delhi University, NIMHANS Bangalore, TISS Mumbai, Jamia Millia Islamia, APA (American Psychological Association) guidelines for graduate Psychology, UGC model curriculum for MSc Psychology',
     bloomsEmphasis: 'Apply (L3), Analyze (L4), Evaluate (L5), and Create (L6)',
     teachingMethodology: 'Lectures, Research Seminars, Lab Practicals, Clinical Fieldwork, Dissertation Supervision, Case Conferences',
     extraRules: `- Align content with UGC guidelines and APA recommendations for graduate-level Psychology programmes

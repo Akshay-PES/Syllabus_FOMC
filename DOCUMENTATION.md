@@ -44,11 +44,11 @@ An AI-powered web application that evaluates and improves university syllabi acr
 ### UG Commerce & Management
 | Programme | Benchmarked Against |
 |-----------|-------------------|
-| BCom | SRCC, Christ University, Symbiosis, UGC guidelines |
+| BCom | SRCC, Symbiosis, LSE, NUS, UGC guidelines |
 | BCom ACCA | ACCA qualification standards & top commerce institutions |
 | BCom CMA | ICMAI CMA standards & top commerce institutions |
-| BBA | Christ University, Symbiosis, IIM Indore IPM, UGC guidelines |
-| BBA Analytics | NMIMS, Christ University, Symbiosis, Great Lakes |
+| BBA | Symbiosis, IIM Indore IPM, Babson College, UGC guidelines |
+| BBA Analytics | NMIMS, Symbiosis, Great Lakes, MIT |
 
 ### UG Law
 | Programme | Benchmarked Against |
@@ -59,7 +59,7 @@ An AI-powered web application that evaluates and improves university syllabi acr
 ### UG Science / Social Science
 | Programme | Benchmarked Against |
 |-----------|-------------------|
-| BSc Psychology | Delhi University, Christ University, APA guidelines |
+| BSc Psychology | Delhi University, FLAME University, APA guidelines |
 | BSc Economics | Delhi School of Economics, St. Xavier's, Ashoka University |
 
 ### UG Hospitality

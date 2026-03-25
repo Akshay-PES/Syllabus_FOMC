@@ -28,12 +28,12 @@ const PROGRAM_LABELS = {
 
 const BENCHMARKS = {
   MBA:            'Harvard, Wharton, MIT Sloan, INSEAD, IIMs, ISB',
-  BCOM:           'SRCC, Christ University, LSE, NUS, UGC guidelines',
-  BCOM_ACCA:      'ACCA Global, Oxford Brookes, Kaplan UK, Christ University',
+  BCOM:           'SRCC, Symbiosis, LSE, NUS, UGC guidelines',
+  BCOM_ACCA:      'ACCA Global, Oxford Brookes, Kaplan UK, BPP University',
   BCOM_CMA:       'ICMAI, IMA (USA), SRCC, University of Illinois',
   BCOM_CFA:       'CFA Institute, NYU Stern, London Business School, SRCC',
   BCOM_CA:        'ICAI, Deakin University, University of Warwick, SRCC',
-  BBA:            'Christ University, IIM Indore IPM, Babson College, NUS',
+  BBA:            'Symbiosis, IIM Indore IPM, Babson College, NUS',
   BBA_ANALYTICS:  'NMIMS, MIT, Carnegie Mellon, UT Austin',
   BBA_SPORTS:     'Loughborough University, University of Michigan, Symbiosis',
   BA_LLB:         'NLSIU, NLU Delhi, Harvard Law, Oxford, BCI curriculum',

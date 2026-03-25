@@ -21,19 +21,25 @@ router.get('/', (req, res) => {
   }
 
   const safeName = downloadName || 'updated_syllabus.docx';
+  res.setHeader('Cache-Control', 'no-store');
   res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
   res.setHeader('Content-Disposition', `attachment; filename="${safeName}"`);
 
   const stream = fs.createReadStream(filePath);
   stream.pipe(res);
 
-  // Clean up after the file is fully sent
+  // Small delay before deletion to ensure Word has fully read the file
   stream.on('end', () => {
-    fs.unlink(filePath, () => {});
+    setTimeout(() => {
+      fs.unlink(filePath, (err) => {
+        if (err) console.error('[download] Cleanup error:', err.message);
+      });
+    }, 1000);
   });
 
   stream.on('error', (err) => {
     console.error('[download] Stream error:', err.message);
+    fs.unlink(filePath, () => {});
     if (!res.headersSent) {
       res.status(500).json({ error: 'Failed to stream file.' });
     }

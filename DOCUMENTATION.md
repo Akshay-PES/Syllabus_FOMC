@@ -37,40 +37,42 @@ An AI-powered web application that evaluates and improves university syllabi acr
 ## Supported Programmes
 
 ### Postgraduate
-| Programme | Benchmarked Against |
-|-----------|-------------------|
-| MBA | Harvard, Wharton, MIT Sloan, INSEAD, IIMs, ISB |
+| Programme | QS Subject | Benchmarked Against |
+|-----------|-----------|-------------------|
+| MBA | Business & Management Studies | Harvard, Wharton, MIT Sloan, INSEAD, IIMs, ISB |
+| MSc Psychology | Psychology | Oxford (MSc), Cambridge (MPhil), UCL (MSc), Amsterdam (MSc), Melbourne, Edinburgh, UBC, King's College London, NIMHANS, TISS |
+| LLM | Law & Legal Studies | NLSIU, NLU Delhi, NALSAR, NLU Jodhpur, DU Law Faculty, WBNUJS, BCI |
 
 ### UG Commerce & Management
-| Programme | Benchmarked Against |
-|-----------|-------------------|
-| BCom | MIT, Stanford, LSE, Oxford, Melbourne, NUS, UGC guidelines |
-| BCom ACCA | ACCA Global, MIT, LSE, Oxford, Melbourne, NUS |
-| BCom CMA | ICMAI, IMA (USA), MIT, Stanford, LSE, Oxford |
-| BCom CFA | CFA Institute, MIT, Stanford, LSE, Oxford, NUS |
-| BCom CA | ICAI, MIT, LSE, Oxford, Melbourne, NUS |
-| BBA | Harvard, INSEAD, London Business School, MIT Sloan, Cambridge, NUS |
-| BBA Analytics | MIT, Stanford, ETH Zurich, Carnegie Mellon, Oxford |
-| BBA Sports | Loughborough, Sydney, Queensland, UBC, KU Leuven |
+| Programme | QS Subject | Benchmarked Against |
+|-----------|-----------|-------------------|
+| BCom | Accounting & Finance | Melbourne (BCom), Sydney (BCom), UNSW (BCom), Toronto Rotman (BCom), McGill (BCom), Monash (BCom), Auckland (BCom) |
+| BCom ACCA | Accounting & Finance | ACCA Global, Melbourne (BCom), Sydney (BCom), UNSW (BCom), Toronto (BCom), McGill (BCom), Oxford Brookes |
+| BCom CMA | Accounting & Finance | ICMAI, IMA (USA), Melbourne (BCom), Sydney (BCom), UNSW (BCom), Toronto (BCom), Monash (BCom) |
+| BCom CFA | Accounting & Finance | CFA Institute, UNSW (BCom-CFA), Toronto (BCom-CFA), McGill (BCom-CFA), Melbourne (BCom), Monash (BCom-CFA) |
+| BCom CA | Accounting & Finance | ICAI, Melbourne (BCom-CA ANZ), Sydney (BCom-CA ANZ), UNSW (BCom), Toronto (BCom-CPA), Cape Town (BCom-SAICA) |
+| BBA | Business & Management Studies | NUS (BBA), HKUST (BBA), HKU (BBA), CUHK (BBA), Michigan Ross (BBA), UT Austin McCombs (BBA), SMU Singapore (BBA) |
+| BBA Analytics | Data Science & AI | NUS (BSc Business Analytics), Michigan Ross (BBA-Analytics), UT Austin McCombs (BBA-MIS), HKUST (BBA-IS) |
+| BBA Sports | Sports-related Subjects | Loughborough (BSc Sport Mgmt), Deakin (B. Sport Mgmt), Michigan (BSc Sport Mgmt), Ohio State (BS Sport Industry) |
 
 ### UG Law
-| Programme | Benchmarked Against |
-|-----------|-------------------|
-| BA LLB | Oxford, Cambridge, Harvard Law, Yale Law, LSE, NUS, BCI |
-| BBA LLB | Oxford, Cambridge, Harvard Law, Yale Law, LSE, NUS, BCI |
-| LLB | Oxford, Cambridge, Harvard Law, Yale Law, LSE, NUS, BCI |
+| Programme | QS Subject | Benchmarked Against |
+|-----------|-----------|-------------------|
+| BA LLB | Law & Legal Studies | NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, WBNUJS Kolkata, NLU Jodhpur, GNLU Gandhinagar, BCI |
+| BBA LLB | Law & Legal Studies | Symbiosis Law School, NMIMS School of Law, O.P. Jindal Global Law School, NLSIU, NLU Delhi, BCI |
+| LLB | Law & Legal Studies | Faculty of Law DU, Government Law College Mumbai, ILS Law College Pune, NLSIU, NLU Delhi, BCI |
 
 ### UG Science / Social Science
-| Programme | Benchmarked Against |
-|-----------|-------------------|
-| BSc Psychology | Harvard, Stanford, Oxford, Cambridge, Amsterdam, APA guidelines |
-| BSc Economics | MIT, Harvard, Stanford, LSE, Oxford, Cambridge, ETH Zurich |
-| BSc JMC | Amsterdam, LSE, USC, NTU Singapore, Melbourne, Goldsmiths |
+| Programme | QS Subject | Benchmarked Against |
+|-----------|-----------|-------------------|
+| BSc Psychology | Psychology | Oxford (BA Experimental Psych), Cambridge (BA PBS), UCL (BSc), Toronto (BSc), UBC (BSc), Edinburgh (BSc), Amsterdam (BSc) |
+| BSc Economics | Economics & Econometrics | LSE (BSc), Cambridge (BA), UCL (BSc), Toronto (BSc), NUS (BSc), Warwick (BSc), Edinburgh (BSc) |
+| BSc JMC | Communication & Media Studies | USC Annenberg (BA), LSE (BSc), Northwestern Medill (BSJ), Amsterdam (BSc), NTU Singapore (BA), Wisconsin-Madison (BSc), QUT (B. Comm) |
 
 ### UG Hospitality
-| Programme | Benchmarked Against |
-|-----------|-------------------|
-| BHEM | EHL Lausanne, Cornell, Hong Kong PolyU, UNLV, Les Roches, Surrey |
+| Programme | QS Subject | Benchmarked Against |
+|-----------|-----------|-------------------|
+| BHEM | Hospitality & Leisure Management | EHL Lausanne (BSc), Cornell (BS), Hong Kong PolyU (BSc), UNLV (BS), Glion (BBA), Les Roches (BBA), Surrey (BSc) |
 
 ---
 

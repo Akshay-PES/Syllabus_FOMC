@@ -102,15 +102,18 @@ The uploaded syllabus to be evaluated and improved:
 
 Compare the uploaded syllabus against the standards of: ${program.benchmarks}.
 
+**BENCHMARK COURSE CODE REFERENCING (MANDATORY):**
+When evaluating and redesigning the syllabus, cross-reference each subject/course against equivalent courses at the benchmark universities listed above. For each major topic or unit, identify the corresponding course code and course name at the benchmark universities that cover similar content. For example, if evaluating a "Financial Accounting" course for BCom, reference that University of Melbourne teaches it as ACCT10001 (Accounting Reports and Analysis), University of Sydney as ACCT1006 (Accounting and Financial Management), etc. Use your knowledge of these universities' course catalogs to provide accurate course codes and names. Include these references in your evaluation to demonstrate alignment with global standards.
+
 Evaluate across these dimensions:
-- Topic coverage — are all key topics present and appropriate for ${program.label}?
+- Topic coverage — are all key topics present and appropriate for ${program.label}? Reference equivalent course codes at benchmark universities.
 - Industry / professional relevance — does content reflect current practice at the ${program.level} level?
 - Analytical rigor — is the depth appropriate for ${program.label} students?
 - Technology integration — are modern tools and applications embedded where appropriate?
 - Practical applicability — are labs, tools, and real-world applications included?
 
 Identify specifically:
-- Missing high-value topics
+- Missing high-value topics (cite which benchmark university course covers them, with course code)
 - Outdated or redundant content
 - Weak areas needing strengthening
 
@@ -457,6 +460,7 @@ Apply colour tags inside the Details column cells as follows:
 | Tools / Technologies Expanded | [GREEN]tool 1[/GREEN]; [GREEN]tool 2[/GREEN]; ... |
 | New Textbook | [YELLOW]Author. (Year). Title. Publisher.[/YELLOW] or None |
 | Benchmarked Against | ${program.benchmarks} |
+| Equivalent Courses at Benchmark Universities | [List equivalent course codes and names from benchmark universities for this subject, e.g., "University of Melbourne: ACCT10001 — Accounting Reports and Analysis; University of Sydney: ACCT1006 — Accounting and Financial Management"] |
 
 ---
 

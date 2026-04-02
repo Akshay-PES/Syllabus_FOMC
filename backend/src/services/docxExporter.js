@@ -25,6 +25,15 @@ const THIN = (color = C.BORDER) => ({ style: BorderStyle.SINGLE, size: 4, color 
 const NO_BORDER = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
 const ALL_THIN = { top: THIN(), bottom: THIN(), left: THIN(), right: THIN() };
 
+// Zero-width space prevents empty TextRun nodes that can corrupt DOCX in some Word versions
+const ZWS = '\u200B';
+function makeSpacer(before = 100, after = 0) {
+  return new Paragraph({
+    children: [new TextRun({ text: ZWS, size: 2 })],
+    spacing: { before, after },
+  });
+}
+
 // ─── Flatten nested colour tags from inside out ──────────────────────────────
 // e.g. [YELLOW]text [GREEN]tool[/GREEN] more[/YELLOW] → separate runs
 function flattenTags(text) {
@@ -84,7 +93,7 @@ function parseTextRuns(raw, opts = {}) {
   const tail = text.slice(lastIdx);
   if (tail) runs.push(new TextRun({ text: tail, bold: defaultBold, color: baseColor, size }));
 
-  return runs.length ? runs : [new TextRun({ text: '' })];
+  return runs.length ? runs : [new TextRun({ text: ZWS })];
 }
 
 // Strip all tags from text (for extracting plain values)
@@ -248,8 +257,8 @@ function makeDataTable(tableLines) {
   const rows2d = parseTableRows(tableLines);
   if (rows2d.length === 0) return null;
 
-  // Determine column count from header row and normalize all rows
-  const colCount = rows2d[0].length;
+  // Determine column count from the widest row (not just header)
+  const colCount = Math.max(...rows2d.map(r => r.length));
   if (colCount === 0) return null;
 
   // Normalize: pad short rows with empty cells, trim long rows
@@ -263,34 +272,45 @@ function makeDataTable(tableLines) {
 
   const isTotal = (row) => stripTags(row[0] || '').toLowerCase() === 'total';
 
-  const docRows = normalizedRows.map((cells, rowIdx) => {
+  const docRows = [];
+  for (let rowIdx = 0; rowIdx < normalizedRows.length; rowIdx++) {
+    const cells = normalizedRows[rowIdx];
     const isHeader = rowIdx === 0;
     const isTotalRow = !isHeader && isTotal(cells);
 
     const fill = isHeader ? C.NAVY : isTotalRow ? C.LIGHT_GRAY : C.WHITE;
-    const textColor = isHeader ? C.WHITE : C.DARK_TEXT;
     const bold = isHeader || isTotalRow;
 
-    return new TableRow({
-      tableHeader: isHeader,
-      children: cells.map((cellText, colIdx) => {
-        const runs = parseTextRuns(cellText || '', { defaultBold: bold, size: 18, whiteText: isHeader });
-        const isFirstCol = colIdx === 0;
+    // Build cells with explicit loop and count verification
+    const tableCells = [];
+    for (let colIdx = 0; colIdx < colCount; colIdx++) {
+      const cellText = colIdx < cells.length ? (cells[colIdx] || '') : '';
+      const runs = parseTextRuns(cellText, { defaultBold: bold, size: 18, whiteText: isHeader });
+      const isFirstCol = colIdx === 0;
 
-        return new TableCell({
-          verticalAlign: VerticalAlign.CENTER,
-          shading: { type: ShadingType.CLEAR, color: 'auto', fill },
-          borders: ALL_THIN,
-          children: [new Paragraph({
-            alignment: isFirstCol ? AlignmentType.LEFT : AlignmentType.CENTER,
-            spacing: { before: 60, after: 60 },
-            indent: isFirstCol ? { left: 80 } : undefined,
-            children: runs,
-          })],
-        });
-      }),
-    });
-  });
+      tableCells.push(new TableCell({
+        verticalAlign: VerticalAlign.CENTER,
+        shading: { type: ShadingType.CLEAR, color: 'auto', fill },
+        borders: ALL_THIN,
+        children: [new Paragraph({
+          alignment: isFirstCol ? AlignmentType.LEFT : AlignmentType.CENTER,
+          spacing: { before: 60, after: 60 },
+          indent: isFirstCol ? { left: 80 } : undefined,
+          children: runs,
+        })],
+      }));
+    }
+
+    if (tableCells.length !== colCount) {
+      console.error(`[docxExporter] Row ${rowIdx} has ${tableCells.length} cells, expected ${colCount}. Skipping.`);
+      continue;
+    }
+
+    docRows.push(new TableRow({
+      tableHeader: isHeader,
+      children: tableCells,
+    }));
+  }
 
   if (docRows.length === 0) return null;
 
@@ -353,9 +373,9 @@ function buildChildren(output) {
   const logo = makeLogoParagraph();
   if (logo) children.push(logo);
   children.push(makeTitleBlock(info));
-  children.push(new Paragraph({ children: [new TextRun({ text: '' })], spacing: { before: 160, after: 0 } }));
+  children.push(makeSpacer(160));
   children.push(makeLegendBar());
-  children.push(new Paragraph({ children: [new TextRun({ text: '' })], spacing: { before: 200, after: 0 } }));
+  children.push(makeSpacer(200));
 
   const lines = output.split('\n');
   let i = 0;
@@ -373,7 +393,7 @@ function buildChildren(output) {
 
     // ── Unit header (**UNIT X: ...)
     if (/^\*\*UNIT\s+\d+:/i.test(t)) {
-      children.push(new Paragraph({ children: [new TextRun({ text: '' })], spacing: { before: 200, after: 0 } }));
+      children.push(makeSpacer(200));
       children.push(makeUnitHeader(t));
       i++;
       continue;
@@ -390,7 +410,7 @@ function buildChildren(output) {
         const tbl = makeDataTable(tblLines);
         if (tbl) {
           children.push(tbl);
-          children.push(new Paragraph({ children: [new TextRun({ text: '' })], spacing: { before: 100, after: 0 } }));
+          children.push(makeSpacer(100));
         }
       } catch (tableErr) {
         // If table parsing fails, render as plain text instead of crashing
@@ -404,7 +424,7 @@ function buildChildren(output) {
 
     // ── Empty line
     if (t === '') {
-      children.push(new Paragraph({ children: [new TextRun({ text: '' })], spacing: { before: 80, after: 0 } }));
+      children.push(makeSpacer(80));
       i++;
       continue;
     }
@@ -463,8 +483,15 @@ async function exportToDocx(output, outputPath) {
     }],
   });
 
-  const buffer = await Packer.toBuffer(doc);
+  let buffer;
+  try {
+    buffer = await Packer.toBuffer(doc);
+  } catch (packErr) {
+    console.error('[docxExporter] Packer.toBuffer() failed:', packErr.message);
+    throw new Error(`DOCX generation failed: ${packErr.message}`);
+  }
   fs.writeFileSync(outputPath, buffer);
+  console.log(`[docxExporter] Wrote ${buffer.length} bytes to ${outputPath}`);
   return outputPath;
 }
 

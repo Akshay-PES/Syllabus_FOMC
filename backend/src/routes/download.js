@@ -21,29 +21,29 @@ router.get('/', (req, res) => {
   }
 
   const safeName = downloadName || 'updated_syllabus.docx';
-  res.setHeader('Cache-Control', 'no-store');
-  res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-  res.setHeader('Content-Disposition', `attachment; filename="${safeName}"`);
 
-  const stream = fs.createReadStream(filePath);
-  stream.pipe(res);
+  try {
+    const fileBuffer = fs.readFileSync(filePath);
 
-  // Small delay before deletion to ensure Word has fully read the file
-  stream.on('end', () => {
+    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    res.setHeader('Content-Disposition', `attachment; filename="${safeName}"`);
+    res.setHeader('Content-Length', fileBuffer.length);
+    res.setHeader('Content-Transfer-Encoding', 'binary');
+    res.end(fileBuffer);
+
+    // Clean up after sending
     setTimeout(() => {
       fs.unlink(filePath, (err) => {
         if (err) console.error('[download] Cleanup error:', err.message);
       });
-    }, 1000);
-  });
-
-  stream.on('error', (err) => {
-    console.error('[download] Stream error:', err.message);
-    fs.unlink(filePath, () => {});
+    }, 2000);
+  } catch (err) {
+    console.error('[download] Read error:', err.message);
     if (!res.headersSent) {
-      res.status(500).json({ error: 'Failed to stream file.' });
+      res.status(500).json({ error: 'Failed to read file.' });
     }
-  });
+  }
 });
 
 module.exports = router;

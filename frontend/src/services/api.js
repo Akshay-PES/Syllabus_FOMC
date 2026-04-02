@@ -38,13 +38,18 @@ export async function generateSyllabus(syllabusFilename, syllabusType, programId
 export async function downloadDocx(filename, downloadName) {
   const response = await axios.get(`${BASE}/download`, {
     params: { filename, downloadName },
-    responseType: 'blob',
+    responseType: 'arraybuffer',
   });
 
-  const url = window.URL.createObjectURL(new Blob([response.data]));
+  const blob = new Blob([response.data], {
+    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  });
+  const url = window.URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
   link.download = downloadName || 'updated_syllabus.docx';
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
   window.URL.revokeObjectURL(url);
 }

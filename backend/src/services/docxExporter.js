@@ -98,7 +98,7 @@ function stripTags(text) {
 
 // ─── Extract course info from AI output (for title block + page header) ───────
 function extractCourseInfo(output) {
-  const info = { title: 'MBA Course', code: '', credits: '', programme: 'Master of Business Administration (MBA)', year: '2025-26' };
+  const info = { title: 'Course', code: '', credits: '', programme: '', year: '2025-26' };
   const lines = output.split('\n');
   let inSection1 = false;
 
@@ -152,7 +152,7 @@ function makeTitleBlock(info) {
       children: [new Paragraph({
         alignment: AlignmentType.CENTER,
         spacing: { before: 60, after: 60 },
-        children: [new TextRun({ text, bold, color: C.WHITE, size: fontSize })],
+        children: [new TextRun({ text: text || ' ', bold, color: C.WHITE, size: fontSize })],
       })],
       shading: { type: ShadingType.CLEAR, color: 'auto', fill: C.NAVY },
       borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER },
@@ -160,13 +160,13 @@ function makeTitleBlock(info) {
   });
 
   const line2 = [info.code && `Course Code: ${info.code}`, info.credits && `Credit Structure: (${info.credits.replace(/L-T-P-C-CH:\s*/i, '')})`].filter(Boolean).join(' | ');
-  const line3 = `${info.programme} | Academic Year ${info.year}`;
+  const line3 = `${info.programme || 'Programme'} | Academic Year ${info.year}`;
 
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
     borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER, insideH: NO_BORDER, insideV: NO_BORDER },
     rows: [
-      navyCell(info.title.toUpperCase(), true, 36),
+      navyCell((info.title || 'Course').toUpperCase(), true, 36),
       ...(line2 ? [navyCell(line2, false, 20)] : []),
       navyCell(line3, false, 18),
     ],
@@ -204,14 +204,14 @@ function makeSectionHeading(raw) {
   return new Paragraph({
     spacing: { before: 280, after: 120 },
     border: { bottom: { color: C.BLUE, space: 1, style: BorderStyle.SINGLE, size: 6 } },
-    children: [new TextRun({ text, bold: true, color: C.BLUE, size: 24 })],
+    children: [new TextRun({ text: text || ' ', bold: true, color: C.BLUE, size: 24 })],
   });
 }
 
 // ─── Unit header box (navy, white text, full width) ───────────────────────────
 function makeUnitHeader(raw) {
   const text = raw.replace(/^\*\*/,'').replace(/\*\*$/, '').trim();
-  const runs = parseTextRuns(text, { defaultBold: true, size: 20, whiteText: true });
+  const runs = parseTextRuns(text || ' ', { defaultBold: true, size: 20, whiteText: true });
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
     borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER, insideH: NO_BORDER, insideV: NO_BORDER },
@@ -248,9 +248,22 @@ function makeDataTable(tableLines) {
   const rows2d = parseTableRows(tableLines);
   if (rows2d.length === 0) return null;
 
+  // Determine column count from header row and normalize all rows
+  const colCount = rows2d[0].length;
+  if (colCount === 0) return null;
+
+  // Normalize: pad short rows with empty cells, trim long rows
+  const normalizedRows = rows2d.map(row => {
+    if (row.length === colCount) return row;
+    if (row.length < colCount) {
+      return [...row, ...Array(colCount - row.length).fill('')];
+    }
+    return row.slice(0, colCount);
+  });
+
   const isTotal = (row) => stripTags(row[0] || '').toLowerCase() === 'total';
 
-  const docRows = rows2d.map((cells, rowIdx) => {
+  const docRows = normalizedRows.map((cells, rowIdx) => {
     const isHeader = rowIdx === 0;
     const isTotalRow = !isHeader && isTotal(cells);
 
@@ -261,7 +274,7 @@ function makeDataTable(tableLines) {
     return new TableRow({
       tableHeader: isHeader,
       children: cells.map((cellText, colIdx) => {
-        const runs = parseTextRuns(cellText, { defaultBold: bold, size: 18, whiteText: isHeader });
+        const runs = parseTextRuns(cellText || '', { defaultBold: bold, size: 18, whiteText: isHeader });
         const isFirstCol = colIdx === 0;
 
         return new TableCell({
@@ -279,6 +292,8 @@ function makeDataTable(tableLines) {
     });
   });
 
+  if (docRows.length === 0) return null;
+
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
     borders: ALL_THIN,
@@ -293,13 +308,14 @@ function makePara(text, opts = {}) {
     alignment,
     spacing,
     indent: indent ? { left: indent } : undefined,
-    children: parseTextRuns(text, { defaultBold: bold, size: 20 }),
+    children: parseTextRuns(text || '', { defaultBold: bold, size: 20 }),
   });
 }
 
 // ─── Page header ─────────────────────────────────────────────────────────────
 function makePageHeader(info) {
-  const headerText = `MBA Programme | ${info.title} | ${info.year}`;
+  const prog = info.programme || 'Programme';
+  const headerText = `${prog} | ${info.title || 'Course'} | ${info.year}`;
   return {
     default: new Header({
       children: [new Paragraph({
@@ -370,10 +386,18 @@ function buildChildren(output) {
         tblLines.push(lines[i]);
         i++;
       }
-      const tbl = makeDataTable(tblLines);
-      if (tbl) {
-        children.push(tbl);
-        children.push(new Paragraph({ children: [new TextRun({ text: '' })], spacing: { before: 100, after: 0 } }));
+      try {
+        const tbl = makeDataTable(tblLines);
+        if (tbl) {
+          children.push(tbl);
+          children.push(new Paragraph({ children: [new TextRun({ text: '' })], spacing: { before: 100, after: 0 } }));
+        }
+      } catch (tableErr) {
+        // If table parsing fails, render as plain text instead of crashing
+        console.error('[docxExporter] Table parsing error, rendering as text:', tableErr.message);
+        for (const tl of tblLines) {
+          children.push(makePara(tl.trim()));
+        }
       }
       continue;
     }
@@ -410,6 +434,11 @@ function buildChildren(output) {
 // ─── Public: generate DOCX file ──────────────────────────────────────────────
 async function exportToDocx(output, outputPath) {
   const { children, info } = buildChildren(output);
+
+  // Ensure we have at least one child element
+  if (children.length === 0) {
+    children.push(new Paragraph({ children: [new TextRun({ text: 'No content generated.' })] }));
+  }
 
   const doc = new Document({
     styles: {

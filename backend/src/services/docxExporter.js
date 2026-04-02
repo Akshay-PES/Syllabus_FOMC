@@ -49,7 +49,7 @@ function flattenTags(text) {
 
 // ─── Text run parser ──────────────────────────────────────────────────────────
 // Handles **bold**, [YELLOW]...[/YELLOW], [GREEN]...[/GREEN], [RED]...[/RED]
-// Supports nested tags by flattening them first
+// Supports one level of nesting (e.g. [YELLOW]...[GREEN]inner[/GREEN]...[/YELLOW])
 function parseTextRuns(raw, opts = {}) {
   const {
     defaultBold  = false,
@@ -62,6 +62,35 @@ function parseTextRuns(raw, opts = {}) {
   const text = flattenTags((raw || '').trim());
   const runs = [];
 
+  // Strip any leftover \x01/\x02 marker bytes (safety net against corrupt input)
+  const clean = (s) => s.replace(/[\x01\x02]/g, '');
+
+  // Build a single TextRun for a colour tag, expanding any inner nested markers
+  const makeColorRuns = (innerText, outerTag) => {
+    const innerRE = /\x01(YELLOW|GREEN|RED)\x02([\s\S]*?)\x01\/\1\x02/g;
+    const result = [];
+    let idx = 0, im;
+    while ((im = innerRE.exec(innerText)) !== null) {
+      if (im.index > idx) {
+        const plain = clean(innerText.slice(idx, im.index));
+        if (plain) result.push(makeTagRun(plain, outerTag));
+      }
+      const innerContent = clean(im[2]);
+      if (innerContent) result.push(makeTagRun(innerContent, im[1]));
+      idx = innerRE.lastIndex;
+    }
+    const tail = clean(innerText.slice(idx));
+    if (tail) result.push(makeTagRun(tail, outerTag));
+    return result;
+  };
+
+  const makeTagRun = (content, tag) => {
+    if (tag === 'YELLOW') return new TextRun({ text: content, highlight: 'yellow', bold: defaultBold, size });
+    if (tag === 'GREEN')  return new TextRun({ text: content, highlight: 'green',  bold: defaultBold, size });
+    if (tag === 'RED')    return new TextRun({ text: content, color: C.RED, strike: true, bold: defaultBold, size });
+    return new TextRun({ text: content, bold: defaultBold, color: baseColor, size });
+  };
+
   // Regex: **bold** OR flattened marker \x01TAG\x02content\x01/TAG\x02
   const RE = /\*\*([\s\S]*?)\*\*|\x01(YELLOW|GREEN|RED)\x02([\s\S]*?)\x01\/\2\x02/g;
   let lastIdx = 0;
@@ -69,28 +98,21 @@ function parseTextRuns(raw, opts = {}) {
 
   while ((m = RE.exec(text)) !== null) {
     if (m.index > lastIdx) {
-      const plain = text.slice(lastIdx, m.index);
+      const plain = clean(text.slice(lastIdx, m.index));
       if (plain) runs.push(new TextRun({ text: plain, bold: defaultBold, color: baseColor, size }));
     }
 
     if (m[1] !== undefined) {
       // **bold**
-      runs.push(new TextRun({ text: m[1], bold: true, color: baseColor, size }));
+      runs.push(new TextRun({ text: clean(m[1]), bold: true, color: baseColor, size }));
     } else {
-      const tag = m[2];
-      const content = m[3];
-      if (tag === 'YELLOW') {
-        runs.push(new TextRun({ text: content, highlight: 'yellow', bold: defaultBold, size }));
-      } else if (tag === 'GREEN') {
-        runs.push(new TextRun({ text: content, highlight: 'green', bold: defaultBold, size }));
-      } else if (tag === 'RED') {
-        runs.push(new TextRun({ text: content, color: C.RED, strike: true, bold: defaultBold, size }));
-      }
+      // Colour tag — expand inner nested markers into separate runs
+      for (const r of makeColorRuns(m[3], m[2])) runs.push(r);
     }
     lastIdx = RE.lastIndex;
   }
 
-  const tail = text.slice(lastIdx);
+  const tail = clean(text.slice(lastIdx));
   if (tail) runs.push(new TextRun({ text: tail, bold: defaultBold, color: baseColor, size }));
 
   return runs.length ? runs : [new TextRun({ text: ZWS })];

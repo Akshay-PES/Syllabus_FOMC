@@ -224,8 +224,10 @@ const PROGRAMS = {
     label: 'BA-LLB (Hons) — Bachelor of Arts & Bachelor of Laws (Honors)',
     level: 'UG',
     group: 'UG Law',
-    persona: 'senior legal academic curriculum designer specialising in five-year integrated BA LLB programmes at top Indian National Law Universities and law colleges (NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, WBNUJS Kolkata, NLU Jodhpur, GNLU Gandhinagar)',
-    benchmarks: 'NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, WBNUJS Kolkata, NLU Jodhpur, GNLU Gandhinagar, Bar Council of India (BCI) prescribed curriculum',
+    persona: 'senior legal academic curriculum designer specialising in five-year integrated BA LLB programmes at top Indian National Law Universities and globally ranked law schools (NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, University of Oxford Faculty of Law, University of Cambridge Faculty of Law, Harvard Law School)',
+    benchmarks: 'NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, WBNUJS Kolkata, NLU Jodhpur, GNLU Gandhinagar, University of Oxford (Faculty of Law), University of Cambridge (Faculty of Law), Harvard Law School, Bar Council of India (BCI) prescribed curriculum',
+    benchmarks_indian: 'NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, WBNUJS Kolkata, NLU Jodhpur, GNLU Gandhinagar, Bar Council of India (BCI) prescribed curriculum',
+    benchmarks_international: 'NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, WBNUJS Kolkata, NLU Jodhpur, GNLU Gandhinagar, University of Oxford (Faculty of Law), University of Cambridge (Faculty of Law), Harvard Law School, Bar Council of India (BCI) prescribed curriculum',
     bloomsEmphasis: 'Understand (L2), Apply (L3), Analyze (L4), and Evaluate (L5)',
     teachingMethodology: 'Lectures, Moot Court, Legal Research, Tutorials, Seminar Presentations',
     extraRules: `- Align course content strictly with the Bar Council of India (BCI) prescribed curriculum requirements
@@ -234,7 +236,7 @@ const PROGRAMS = {
 - Include Moot Court, Legal Research, or Clinic activities where appropriate to the subject
 - No case studies in the MBA/business sense — instead use legal case analyses and judicial precedents
 - Language and analytical depth must be appropriate for law students
-- LANDMARK CASES (MANDATORY): Each unit must list 5–10 specific landmark judgments (Supreme Court / High Court / relevant international courts) directly relevant to that unit's topics. Format: Case Name (Year) — Court — one-line significance. This is required for BCI accreditation and law programme quality standards.`,
+- LANDMARK CASES (MANDATORY): Each unit must include a sub-section listing 3–5 genuinely landmark judgments (Supreme Court / High Court / relevant international courts) that are directly and substantively relevant to that unit's core topics. For each case provide: Case Name (Year) — Court — 2–3 sentences explaining the legal principle established and why it remains significant today. Do NOT pad with minor or tangentially related cases. Quality over quantity.`,
     pos: COMMON_POS,
     psos: [
       { id: 'PSO1', statement: '[subject-specific legal competency outcome]' },
@@ -247,8 +249,10 @@ const PROGRAMS = {
     label: 'BBA-LLB (Hons) — Bachelor of Business Administration & Bachelor of Laws (Honors)',
     level: 'UG',
     group: 'UG Law',
-    persona: 'senior legal and business academic curriculum designer specialising in five-year integrated BBA LLB programmes at top Indian law institutions (Symbiosis Law School Pune, NMIMS School of Law Mumbai, O.P. Jindal Global Law School, NLSIU Bangalore, NLU Delhi)',
-    benchmarks: 'Symbiosis Law School Pune, NMIMS School of Law Mumbai, O.P. Jindal Global Law School, NLSIU Bangalore, NLU Delhi, Bar Council of India (BCI) prescribed curriculum',
+    persona: 'senior legal and business academic curriculum designer specialising in five-year integrated BBA LLB programmes at top Indian law institutions and globally ranked law schools (Symbiosis Law School Pune, O.P. Jindal Global Law School, NLSIU Bangalore, NLU Delhi, University of Oxford Faculty of Law, Harvard Law School)',
+    benchmarks: 'Symbiosis Law School Pune, NMIMS School of Law Mumbai, O.P. Jindal Global Law School, NLSIU Bangalore, NLU Delhi, University of Oxford (Faculty of Law), Harvard Law School, University of Cambridge (Faculty of Law), Bar Council of India (BCI) prescribed curriculum',
+    benchmarks_indian: 'Symbiosis Law School Pune, NMIMS School of Law Mumbai, O.P. Jindal Global Law School, NLSIU Bangalore, NLU Delhi, Bar Council of India (BCI) prescribed curriculum',
+    benchmarks_international: 'Symbiosis Law School Pune, NMIMS School of Law Mumbai, O.P. Jindal Global Law School, NLSIU Bangalore, NLU Delhi, University of Oxford (Faculty of Law), Harvard Law School, University of Cambridge (Faculty of Law), Bar Council of India (BCI) prescribed curriculum',
     bloomsEmphasis: 'Understand (L2), Apply (L3), Analyze (L4), and Evaluate (L5)',
     teachingMethodology: 'Lectures, Moot Court, Business-Legal Simulations, Legal Research, Tutorials, Seminar Presentations',
     extraRules: `- Align course content with Bar Council of India (BCI) prescribed curriculum requirements
@@ -258,7 +262,7 @@ const PROGRAMS = {
 - For business law subjects: reference Companies Act, SEBI regulations, competition law, IPR, and commercial contracts
 - No case studies in the MBA/business sense — instead use legal case analyses, regulatory scenarios, and judicial precedents
 - Language and depth must be appropriate for law students with a business administration background
-- LANDMARK CASES (MANDATORY): Each unit must list 5–10 specific landmark judgments (Supreme Court / High Court / relevant tribunals / international courts) directly relevant to that unit's topics. Format: Case Name (Year) — Court — one-line significance. This is required for BCI accreditation and law programme quality standards.`,
+- LANDMARK CASES (MANDATORY): Each unit must include a sub-section listing 3–5 genuinely landmark judgments (Supreme Court / High Court / relevant tribunals / international courts) that are directly and substantively relevant to that unit's core topics. For each case provide: Case Name (Year) — Court — 2–3 sentences explaining the legal principle established and why it remains significant today. Do NOT pad with minor or tangentially related cases. Quality over quantity.`,
     pos: COMMON_POS,
     psos: [
       { id: 'PSO1', statement: '[subject-specific legal/business competency outcome]' },
@@ -271,8 +275,10 @@ const PROGRAMS = {
     label: 'LLB (Hons) — Bachelor of Laws (Honors)',
     level: 'UG',
     group: 'UG Law',
-    persona: 'senior legal academic curriculum designer specialising in three-year LLB programmes at top Indian law colleges and National Law Universities (Faculty of Law Delhi University, Government Law College Mumbai, ILS Law College Pune, NLSIU Bangalore, NLU Delhi)',
-    benchmarks: 'Faculty of Law Delhi University, Government Law College Mumbai, ILS Law College Pune, NLSIU Bangalore, NLU Delhi, Bar Council of India (BCI) prescribed curriculum',
+    persona: 'senior legal academic curriculum designer specialising in three-year LLB programmes at top Indian law colleges, National Law Universities, and globally ranked law schools (Faculty of Law Delhi University, NLSIU Bangalore, NLU Delhi, University of Oxford Faculty of Law, University of Cambridge Faculty of Law)',
+    benchmarks: 'Faculty of Law Delhi University, Government Law College Mumbai, ILS Law College Pune, NLSIU Bangalore, NLU Delhi, University of Oxford (Faculty of Law), University of Cambridge (Faculty of Law), Harvard Law School, Bar Council of India (BCI) prescribed curriculum',
+    benchmarks_indian: 'Faculty of Law Delhi University, Government Law College Mumbai, ILS Law College Pune, NLSIU Bangalore, NLU Delhi, Bar Council of India (BCI) prescribed curriculum',
+    benchmarks_international: 'Faculty of Law Delhi University, Government Law College Mumbai, ILS Law College Pune, NLSIU Bangalore, NLU Delhi, University of Oxford (Faculty of Law), University of Cambridge (Faculty of Law), Harvard Law School, Bar Council of India (BCI) prescribed curriculum',
     bloomsEmphasis: 'Understand (L2), Apply (L3), Analyze (L4), and Evaluate (L5)',
     teachingMethodology: 'Lectures, Moot Court, Legal Research, Tutorials, Seminar Presentations, Court Visits',
     extraRules: `- Align course content strictly with the Bar Council of India (BCI) prescribed curriculum requirements for 3-year LLB programmes
@@ -281,7 +287,7 @@ const PROGRAMS = {
 - Include Moot Court, Legal Research, or Clinic activities where appropriate to the subject
 - No case studies in the MBA/business sense — instead use legal case analyses and judicial precedents
 - Language and analytical depth must be appropriate for law students
-- LANDMARK CASES (MANDATORY): Each unit must list 5–10 specific landmark judgments (Supreme Court / High Court / relevant international courts) directly relevant to that unit's topics. Format: Case Name (Year) — Court — one-line significance. This is required for BCI accreditation and law programme quality standards.`,
+- LANDMARK CASES (MANDATORY): Each unit must include a sub-section listing 3–5 genuinely landmark judgments (Supreme Court / High Court / relevant international courts) that are directly and substantively relevant to that unit's core topics. For each case provide: Case Name (Year) — Court — 2–3 sentences explaining the legal principle established and why it remains significant today. Do NOT pad with minor or tangentially related cases. Quality over quantity.`,
     pos: COMMON_POS,
     psos: [
       { id: 'PSO1', statement: '[subject-specific legal competency outcome]' },
@@ -413,8 +419,10 @@ const PROGRAMS = {
     label: 'LL.M. — Master of Laws',
     level: 'PG',
     group: 'Postgraduate',
-    persona: 'senior legal academic curriculum designer specialising in postgraduate law programmes at top Indian National Law Universities (NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, NLU Jodhpur, WBNUJS Kolkata, Faculty of Law Delhi University)',
-    benchmarks: 'NLSIU Bangalore (LLM), NLU Delhi (LLM), NALSAR Hyderabad (LLM), NLU Jodhpur (LLM), Faculty of Law Delhi University (LLM), WBNUJS Kolkata (LLM), Bar Council of India (BCI) standards for LLM programmes',
+    persona: 'senior legal academic curriculum designer specialising in postgraduate law programmes at top Indian National Law Universities and globally ranked law schools (NLSIU Bangalore, NLU Delhi, NALSAR Hyderabad, University of Oxford Faculty of Law, Harvard Law School, University of Cambridge Faculty of Law, NYU School of Law)',
+    benchmarks: 'NLSIU Bangalore (LLM), NLU Delhi (LLM), NALSAR Hyderabad (LLM), NLU Jodhpur (LLM), Faculty of Law Delhi University (LLM), WBNUJS Kolkata (LLM), University of Oxford (BCL/LLM), Harvard Law School (LLM), University of Cambridge (LLM), NYU School of Law (LLM), Bar Council of India (BCI) standards for LLM programmes',
+    benchmarks_indian: 'NLSIU Bangalore (LLM), NLU Delhi (LLM), NALSAR Hyderabad (LLM), NLU Jodhpur (LLM), Faculty of Law Delhi University (LLM), WBNUJS Kolkata (LLM), Bar Council of India (BCI) standards for LLM programmes',
+    benchmarks_international: 'NLSIU Bangalore (LLM), NLU Delhi (LLM), NALSAR Hyderabad (LLM), NLU Jodhpur (LLM), Faculty of Law Delhi University (LLM), WBNUJS Kolkata (LLM), University of Oxford (BCL/LLM), Harvard Law School (LLM), University of Cambridge (LLM), NYU School of Law (LLM), Bar Council of India (BCI) standards for LLM programmes',
     bloomsEmphasis: 'Apply (L3), Analyze (L4), Evaluate (L5), and Create (L6)',
     teachingMethodology: 'Lectures, Research Seminars, Moot Court, Legal Research & Writing, Dissertation Supervision, Case Analysis',
     extraRules: `- Align course content with Bar Council of India (BCI) and UGC standards for postgraduate law programmes
@@ -424,7 +432,7 @@ const PROGRAMS = {
 - Include advanced research methodology, legal writing, and dissertation preparation skills
 - Students should engage with primary legal sources: statutes, case reporters, law commission reports, and international treaties
 - Depth and analytical rigour must be appropriate for postgraduate law students preparing for legal practice, academia, or policy roles
-- LANDMARK CASES (MANDATORY): Each unit must list 5–10 specific landmark judgments (Supreme Court / High Court / International Courts / Tribunals) directly relevant to that unit's topics. Format: Case Name (Year) — Court — one-line significance. This is required for BCI accreditation and law programme quality standards.`,
+- LANDMARK CASES (MANDATORY): Each unit must include a sub-section listing 3–5 genuinely landmark judgments (Supreme Court / High Court / International Courts / Tribunals) that are directly and substantively relevant to that unit's core topics. For each case provide: Case Name (Year) — Court — 2–3 sentences explaining the legal principle established and why it remains significant today. Do NOT pad with minor or tangentially related cases. Quality over quantity.`,
     pos: COMMON_POS,
     psos: [
       { id: 'PSO1', statement: '[subject-specific legal competency outcome]' },

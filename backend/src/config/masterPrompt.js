@@ -14,12 +14,22 @@
 
 const { buildPoTableMarkdown, buildCoPoMatrixHeader, buildCoPoMatrixRows } = require('./programConfig');
 
-function buildMasterPrompt(program) {
+function buildMasterPrompt(program, lawBenchmarkType = 'indian') {
   const poTable        = buildPoTableMarkdown(program);
   const coPoHeader     = buildCoPoMatrixHeader(program);
   const coPoRows       = buildCoPoMatrixRows(program);
   const extraRules       = program.extraRules ? `\n${program.extraRules}\n` : '';
   const isLaw            = program.id === 'BA_LLB' || program.id === 'BBA_LLB' || program.id === 'LLB' || program.id === 'LLM';
+
+  // For law programmes, pick the right benchmark set based on subject type
+  if (isLaw && program.benchmarks_indian && program.benchmarks_international) {
+    program = {
+      ...program,
+      benchmarks: lawBenchmarkType === 'international'
+        ? program.benchmarks_international
+        : program.benchmarks_indian,
+    };
+  }
   const isProfessional   = program.id === 'BCOM_ACCA' || program.id === 'BCOM_CMA' || program.id === 'BCOM_CFA' || program.id === 'BCOM_CA';
 
   const ugCalibration = program.level === 'UG' ? `
@@ -76,6 +86,23 @@ For Section 6 (Detailed Course Contents), each unit MUST include a sub-section:
 List 5–10 specific landmark Supreme Court, High Court, or relevant international court judgments that are directly relevant to the unit's topics. Format each as: Case Name (Year) — Court — one-line significance.
 This is mandatory for law programme accreditation.
 ` : '';
+
+  const lawBenchmarkNote = isLaw
+    ? lawBenchmarkType === 'international'
+      ? `\n**BENCHMARKING SCOPE: This is a Comparative / International Law subject. Benchmark against both Indian NLUs and global law schools (Oxford, Harvard, Cambridge, NYU) listed above. Reference equivalent courses and comparative jurisprudence from international institutions where relevant.**\n`
+      : `\n**BENCHMARKING SCOPE: This is an Indian Law subject (e.g., BNSS, BNS, CPC, Evidence Act, or similar India-specific statute). Benchmark ONLY against Indian National Law Universities and the BCI curriculum listed above. Do NOT reference Oxford, Harvard, Cambridge, or other global institutions — they do not teach India-specific statutory law. Equivalent course codes should come only from Indian NLUs.**\n`
+    : '';
+
+  const lawSourceRestriction = isLaw ? `
+
+**LAW PROGRAMME — SOURCES RESTRICTION (MANDATORY):**
+For Section 11 (Textbooks and References), apply these strict rules:
+- Do NOT cite IndiaKanoon or any case-law aggregator website as a web resource
+- Do NOT cite blogs, news articles, Wikipedia, or non-academic websites
+- Web resources must be ONLY: official government/statutory body websites (e.g., legislative.gov.in, sci.gov.in, barandbench.com is NOT acceptable), university law library databases (HeinOnline, Manupatra — institutional access), MOOC platforms (Coursera, edX, NPTEL law courses), or official bar council / law commission publications
+- Manupatra and SCC Online are acceptable ONLY as institutional subscription databases, not as free web links
+- Textbooks must be authored by recognised legal academics or practitioners published by established law publishers (Eastern Book Company, LexisNexis, Oxford University Press, Cambridge University Press, Universal Law Publishing)
+` : '';
   const caseStudyRule  = isLaw
     ? '- Do NOT include MBA-style case studies — instead use legal case analyses, judicial precedents, and regulatory scenarios\n- Assessment components must reflect law programme standards (moot court, legal drafting, research papers)'
     : `- Do NOT include case studies anywhere in the syllabus
@@ -101,6 +128,7 @@ The uploaded syllabus to be evaluated and improved:
 ## STEP 2 — SYLLABUS EVALUATION
 
 Compare the uploaded syllabus against the standards of: ${program.benchmarks}.
+${lawBenchmarkNote}
 
 **BENCHMARK COURSE CODE REFERENCING (MANDATORY):**
 When evaluating and redesigning the syllabus, cross-reference each subject/course against equivalent courses at the benchmark universities listed above. For each major topic or unit, identify the corresponding course code and course name at the benchmark universities that cover similar content. For example, if evaluating a "Financial Accounting" course for BCom, reference that University of Melbourne teaches it as ACCT10001 (Accounting Reports and Analysis), University of Sydney as ACCT1006 (Accounting and Financial Management), etc. Use your knowledge of these universities' course catalogs to provide accurate course codes and names. Include these references in your evaluation to demonstrate alignment with global standards.
@@ -133,10 +161,10 @@ Rules:
 - When removing content, reallocate those contact hours to newly added high-value topics — total hours must stay the same
 - MAINTAIN logical flow and pedagogical progression across units
 
-Industry relevance check (MANDATORY — apply to every topic):
+Industry relevance check (apply to every topic):
 For each topic in every unit, ask: "Is this topic actively used in industry roles, required by employers, or tested in professional certifications as of 2024–25?"
-- If YES → retain
-- If NO or OUTDATED → mark [RED] and replace with a current, high-value alternative
+- If YES → retain (no tag)
+- If NO or OUTDATED → mark [RED] inline in the unit paragraph and list it in Section 12 "Topics Removed"
 - If PARTIALLY RELEVANT → refine with [YELLOW] to modernise it
 
 What to ADD (mark with [YELLOW] for new topics, [GREEN] for AI/tech tools):
@@ -225,6 +253,9 @@ Rules:
 - The Total row in each unit's topic cluster table must sum to the unit's allocated hours
 - The grand total across all 4 units must match the credit-based total (e.g., 40 hours for 4 credits)
 
+**ARITHMETIC VERIFICATION (MANDATORY — do this before producing output):**
+For each unit, manually add the Hours column values in the topic cluster table. Confirm the sum equals the unit's stated contact hours. Then add all four unit totals and confirm they equal the credit-based grand total. If any sum is wrong, correct the individual row values before outputting. Do not guess or approximate — the numbers must be exactly correct.
+
 ---
 
 ## STEP 7 — PEDAGOGY RULES
@@ -242,12 +273,13 @@ Apply these tags inline at the word, phrase, or sentence level — NOT around en
 - [RED]...[/RED]       → ONLY content that EXISTS in the original but should be REMOVED
 
 **CRITICAL — What must NOT be tagged:**
-- Topics, sentences, or phrases that are RETAINED AS-IS from the original syllabus → NO TAG
+- Topics, sentences, or phrases that are RETAINED AS-IS from the original syllabus → NO TAG (even if you moved them to a different unit)
 - Standard structural text (headings, labels, table headers, section titles) → NO TAG
 - Course information fields that are unchanged (Course Title, Code, Credits) → NO TAG
 - Preamble text that is standard academic language → NO TAG (unless you significantly rewrote it)
 - Unit titles that are unchanged → NO TAG
-- If you only slightly reworded a topic for clarity, tag ONLY the changed words — not the entire sentence
+- Minor rewordings for clarity → NO TAG (tag only if the meaning or scope genuinely changed)
+- Topics that existed in the original but appear in a different unit → NO TAG (reorganisation is not a change)
 
 Rules:
 - Apply at the most granular level possible — individual words, tool names, or short phrases
@@ -422,6 +454,7 @@ Rules for this section:
 - Prefer books by internationally recognised authors (not obscure or regional-only publishers)
 - Include at least 2–3 web resources: MOOCs (Coursera, edX, NPTEL), official documentation, or industry-standard platforms
 - Textbooks must directly align with the topics covered in the units — do not list generic subject textbooks
+${lawSourceRestriction}
 
 **Textbooks:**
 1. [Author(s). (Year). Title. Publisher.]
@@ -452,11 +485,13 @@ Apply colour tags inside the Details column cells as follows:
 - Tools / Technologies Expanded → wrap each tool in [GREEN]...[/GREEN]
 - New Textbook → wrap the new textbook entry in [YELLOW]...[/YELLOW]
 
+**SYNC RULE (MANDATORY): Scan every [RED] tag you used anywhere in Section 7. Every topic you wrapped in [RED] in Section 7 MUST appear in the "Topics Removed" row below — no exceptions. If a [RED] tag exists in Section 7 but is missing from this row, the output is incomplete.**
+
 | Parameter | Details |
 |---|---|
 | % Change vs. Previous Year | [X%] (calculated from Unit content, AI tools, and Textbooks/References only) |
 | New Topics Added | [YELLOW]topic 1[/YELLOW]; [YELLOW]topic 2[/YELLOW]; ... |
-| Topics Removed | [RED]topic 1[/RED]; [RED]topic 2[/RED]; ... |
+| Topics Removed | [RED]topic 1[/RED]; [RED]topic 2[/RED]; ... (or "None" if no topics were marked [RED] in Section 7) |
 | Tools / Technologies Expanded | [GREEN]tool 1[/GREEN]; [GREEN]tool 2[/GREEN]; ... |
 | New Textbook | [YELLOW]Author. (Year). Title. Publisher.[/YELLOW] or None |
 | Benchmarked Against | ${program.benchmarks} |

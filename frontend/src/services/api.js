@@ -22,10 +22,10 @@ export async function uploadFile(syllabusFile) {
  * @param {string} syllabusType
  * @param {string} programId - e.g. 'MBA', 'BCOM', 'BBA_LLB'
  */
-export async function generateSyllabus(syllabusFilename, syllabusType, programId) {
+export async function generateSyllabus(syllabusFilename, syllabusType, programId, lawBenchmarkType) {
   const { data } = await axios.post(
     `${BASE}/generate`,
-    { syllabusFilename, syllabusType, programId },
+    { syllabusFilename, syllabusType, programId, lawBenchmarkType },
     { timeout: 300000 } // 5 min for large syllabi
   );
   return data;

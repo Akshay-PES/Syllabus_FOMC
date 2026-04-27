@@ -1,3 +1,5 @@
+const LAW_IDS = new Set(['BA_LLB', 'BBA_LLB', 'LLB', 'LLM']);
+
 const PROGRAM_GROUPS = [
   {
     group: 'Postgraduate',
@@ -44,7 +46,8 @@ const PROGRAM_GROUPS = [
   },
 ];
 
-export default function ProgramSelector({ selected, onSelect, onContinue }) {
+export default function ProgramSelector({ selected, onSelect, onContinue, lawBenchmarkType, onLawBenchmarkChange }) {
+  const isLawSelected = LAW_IDS.has(selected);
   return (
     <div className="min-h-screen bg-[#f7f8fa]">
 
@@ -136,6 +139,58 @@ export default function ProgramSelector({ selected, onSelect, onContinue }) {
             </div>
           ))}
         </div>
+
+        {/* Law benchmark toggle — only visible when a law programme is selected */}
+        {isLawSelected && (
+          <div className="mt-10 bg-white border-2 border-pes-navy/20 rounded-2xl p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-6 rounded-full bg-pes-navy" />
+              <h3 className="text-sm font-bold text-pes-navy uppercase tracking-[0.15em]">
+                Subject Type
+              </h3>
+            </div>
+            <p className="text-sm text-gray-500 mb-5 leading-relaxed">
+              Select whether this subject is governed primarily by Indian statute, or has comparative / international dimensions.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                {
+                  value: 'indian',
+                  label: 'Indian Law Subject',
+                  desc: 'e.g. BNSS, BNS, BSA, CPC, Evidence Act, Transfer of Property Act, GST, Companies Act',
+                },
+                {
+                  value: 'international',
+                  label: 'Comparative / International Law',
+                  desc: 'e.g. Human Rights Law, International Arbitration, Cyber Law, IPR, WTO, Environmental Law',
+                },
+              ].map(({ value, label, desc }) => {
+                const active = lawBenchmarkType === value;
+                return (
+                  <button
+                    key={value}
+                    onClick={() => onLawBenchmarkChange(value)}
+                    className={`text-left px-5 py-4 rounded-xl border-2 transition-all duration-200 ${
+                      active
+                        ? 'border-pes-navy bg-pes-navy/5 shadow-md'
+                        : 'border-gray-200 bg-white hover:border-pes-navy/30 hover:shadow-sm'
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center ${active ? 'border-pes-navy bg-pes-navy' : 'border-gray-300'}`}>
+                        {active && <div className="w-2 h-2 rounded-full bg-white" />}
+                      </div>
+                      <div>
+                        <p className={`text-sm font-bold ${active ? 'text-pes-navy' : 'text-gray-600'}`}>{label}</p>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">{desc}</p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Continue button */}
         <div className="mt-12 flex justify-end">

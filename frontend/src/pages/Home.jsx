@@ -26,6 +26,8 @@ const PROGRAM_LABELS = {
   LLM:            'LL.M.',
 };
 
+const LAW_IDS = new Set(['BA_LLB', 'BBA_LLB', 'LLB', 'LLM']);
+
 const BENCHMARKS = {
   MBA:            'Harvard, Wharton, MIT Sloan, INSEAD, IIMs, ISB',
   BCOM:           'Melbourne (BCom), Sydney (BCom), UNSW (BCom), Toronto (BCom), McGill (BCom)',
@@ -36,29 +38,34 @@ const BENCHMARKS = {
   BBA:            'NUS (BBA), HKUST (BBA), HKU (BBA), Michigan Ross (BBA), UT Austin (BBA)',
   BBA_ANALYTICS:  'NUS (BSc Business Analytics), Michigan Ross (BBA), UT Austin (BBA)',
   BBA_SPORTS:     'Loughborough (BSc Sport Mgmt), Deakin (B. Sport Mgmt), Michigan',
-  BA_LLB:         'NLSIU, NLU Delhi, NALSAR, WBNUJS, NLU Jodhpur, GNLU, BCI',
-  BBA_LLB:        'Symbiosis Law, NMIMS Law, Jindal Global, NLSIU, NLU Delhi, BCI',
-  LLB:            'DU Law Faculty, GLC Mumbai, ILS Pune, NLSIU, NLU Delhi, BCI',
+  BA_LLB:         { indian: 'NLSIU, NLU Delhi, NALSAR, WBNUJS, NLU Jodhpur, GNLU, BCI', international: 'NLSIU, NLU Delhi, NALSAR, WBNUJS, Oxford, Cambridge, Harvard, BCI' },
+  BBA_LLB:        { indian: 'Symbiosis Law, NMIMS Law, Jindal Global, NLSIU, NLU Delhi, BCI', international: 'Symbiosis Law, Jindal Global, NLSIU, NLU Delhi, Oxford, Harvard, Cambridge, BCI' },
+  LLB:            { indian: 'DU Law Faculty, GLC Mumbai, ILS Pune, NLSIU, NLU Delhi, BCI', international: 'DU Law Faculty, NLSIU, NLU Delhi, Oxford, Cambridge, Harvard, BCI' },
   BSC_PSYCHOLOGY: 'Oxford, Cambridge, UCL, Toronto, UBC, Edinburgh, Amsterdam, APA',
   BSC_ECONOMICS:  'LSE (BSc), Cambridge (BA), UCL (BSc), Toronto, NUS, Warwick',
   BSC_JMC:        'USC Annenberg, LSE, Northwestern Medill, Amsterdam, NTU Singapore',
   BHEM:           'EHL Lausanne, Cornell, Hong Kong PolyU, UNLV, Les Roches, Surrey',
   MSC_PSYCHOLOGY: 'Oxford (MSc), Cambridge (MPhil), UCL (MSc), Amsterdam, Melbourne, APA',
-  LLM:            'NLSIU, NLU Delhi, NALSAR, NLU Jodhpur, DU Law Faculty, BCI standards',
+  LLM:            { indian: 'NLSIU, NLU Delhi, NALSAR, NLU Jodhpur, DU Law Faculty, BCI', international: 'NLSIU, NLU Delhi, NALSAR, Oxford (BCL/LLM), Harvard (LLM), Cambridge (LLM), NYU (LLM), BCI' },
 };
 
 export default function Home() {
-  const [step, setStep]               = useState('select');
-  const [programId, setProgramId]     = useState('');
-  const [status, setStatus]           = useState('idle');
-  const [output, setOutput]           = useState('');
-  const [docxFilename, setDocxFilename] = useState(null);
-  const [downloadName, setDownloadName] = useState(null);
-  const [errorMsg, setErrorMsg]       = useState('');
-  const [progressStep, setProgressStep] = useState(0);
+  const [step, setStep]                       = useState('select');
+  const [programId, setProgramId]             = useState('');
+  const [lawBenchmarkType, setLawBenchmarkType] = useState('indian');
+  const [status, setStatus]                   = useState('idle');
+  const [output, setOutput]                   = useState('');
+  const [docxFilename, setDocxFilename]       = useState(null);
+  const [downloadName, setDownloadName]       = useState(null);
+  const [errorMsg, setErrorMsg]               = useState('');
+  const [progressStep, setProgressStep]       = useState(0);
 
   const programLabel = PROGRAM_LABELS[programId] || programId;
-  const benchmark    = BENCHMARKS[programId] || '';
+  const isLaw = LAW_IDS.has(programId);
+  const benchmarkEntry = BENCHMARKS[programId];
+  const benchmark = isLaw && benchmarkEntry
+    ? benchmarkEntry[lawBenchmarkType] || benchmarkEntry.indian
+    : (benchmarkEntry || '');
 
   const PROGRESS_STEPS = [
     { label: 'Uploading syllabus',              desc: 'Sending your file to the server' },
@@ -93,6 +100,7 @@ export default function Home() {
         uploadData.syllabus.filename,
         uploadData.syllabus.mimetype,
         programId,
+        isLaw ? lawBenchmarkType : undefined,
       );
       setProgressStep(4);
       setOutput(result.output);
@@ -112,7 +120,9 @@ export default function Home() {
     return (
       <ProgramSelector
         selected={programId}
-        onSelect={setProgramId}
+        onSelect={(id) => { setProgramId(id); setLawBenchmarkType('indian'); }}
+        lawBenchmarkType={lawBenchmarkType}
+        onLawBenchmarkChange={setLawBenchmarkType}
         onContinue={() => setStep('upload')}
       />
     );
@@ -135,7 +145,7 @@ export default function Home() {
               {programLabel}
             </span>
             <button
-              onClick={() => { setStep('select'); setStatus('idle'); setOutput(''); setErrorMsg(''); }}
+              onClick={() => { setStep('select'); setStatus('idle'); setOutput(''); setErrorMsg(''); setLawBenchmarkType('indian'); }}
               className="text-sm text-gray-400 hover:text-pes-orange font-medium transition-colors"
             >
               Change

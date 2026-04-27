@@ -13,7 +13,7 @@ const MAX_CHARS = 150000;
  * @param {string} programId - e.g. 'MBA', 'BCOM', 'BBA_LLB', etc.
  * @returns {string}
  */
-function buildPrompt(syllabusText, programId) {
+function buildPrompt(syllabusText, programId, lawBenchmarkType = 'indian') {
   const program = PROGRAMS[programId] || PROGRAMS['MBA'];
 
   let content = syllabusText;
@@ -22,7 +22,7 @@ function buildPrompt(syllabusText, programId) {
     content = content.slice(0, MAX_CHARS) + '\n\n[... content truncated due to length ...]';
   }
 
-  const masterPrompt = buildMasterPrompt(program);
+  const masterPrompt = buildMasterPrompt(program, lawBenchmarkType);
   return masterPrompt.replace('{{SYLLABUS_CONTENT}}', content);
 }
 

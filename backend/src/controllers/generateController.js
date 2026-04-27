@@ -12,7 +12,7 @@ const UPLOADS_DIR = path.join(__dirname, '../../uploads');
  * Body: { syllabusFilename, syllabusType }
  */
 const handleGenerate = async (req, res) => {
-  const { syllabusFilename, syllabusType, programId } = req.body;
+  const { syllabusFilename, syllabusType, programId, lawBenchmarkType } = req.body;
 
   if (!syllabusFilename) {
     return res.status(400).json({ error: 'syllabusFilename is required.' });
@@ -33,7 +33,7 @@ const handleGenerate = async (req, res) => {
   }
 
   // Step 2: Build prompt (programme-specific)
-  const prompt = buildPrompt(syllabusText, programId);
+  const prompt = buildPrompt(syllabusText, programId, lawBenchmarkType);
 
   // Step 3: Call Claude
   let output;

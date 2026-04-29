@@ -232,17 +232,29 @@ Verify the pedagogical sequence:
 
 ## STEP 6 — CREDIT HOURS & UNIT STRUCTURE (CRITICAL)
 
-Extract the credit value from the uploaded syllabus. Use this credit-to-hours mapping:
+${isLaw ? `**LAW PROGRAMME — FIXED HOURS (CRITICAL):**
+All law courses at this institution are 4-credit courses carrying **56 contact hours total**. Ignore the credit-to-hours mapping below — use 56 hours regardless of what the uploaded syllabus states.
+
+Distribute 56 hours across the 4 units proportionally based on topic weight. The sum of all four unit hours MUST equal 56.
+
+Example for a law course (56 hours):
+- Unit 1: 14 hours, Unit 2: 14 hours, Unit 3: 14 hours, Unit 4: 14 hours (equal split)
+- OR Unit 1: 16 hours, Unit 2: 15 hours, Unit 3: 14 hours, Unit 4: 11 hours (weighted by complexity)
+
+**TOPIC DENSITY RULE FOR LAW (CRITICAL):**
+56 hours ÷ 4 units = 14 hours per unit on average. Each hour accommodates roughly one lecture. A 14-hour unit must not contain more than 12–14 distinct topic entries in the unit paragraph. Do NOT list 20+ sub-topics in a unit — every topic listed must be genuinely teachable within the allocated hours, including time for case discussion and landmark case analysis.` : `Extract the credit value from the uploaded syllabus. Use this credit-to-hours mapping:
 - 2 Credits = 20 Contact Hours total
 - 3 Credits = 30 Contact Hours total
 - 4 Credits = 40 Contact Hours total
-- 5 Credits = 50 Contact Hours total
+- 5 Credits = 50 Contact Hours total`}
 
 The syllabus MUST have exactly 4 units, regardless of the credit value. Distribute hours across the 4 units proportionally based on topic weight, but the sum of all unit hours must equal the total contact hours derived from the credits above.
 
-Example for a 4-credit course (40 hours):
+${isLaw ? `Example for a law course (56 hours):
+- Unit 1: 14 hours, Unit 2: 14 hours, Unit 3: 14 hours, Unit 4: 14 hours (equal split)
+- OR Unit 1: 16 hours, Unit 2: 15 hours, Unit 3: 13 hours, Unit 4: 12 hours (weighted by topic complexity)` : `Example for a 4-credit course (40 hours):
 - Unit 1: 10 hours, Unit 2: 10 hours, Unit 3: 10 hours, Unit 4: 10 hours (equal split)
-- OR Unit 1: 12 hours, Unit 2: 10 hours, Unit 3: 10 hours, Unit 4: 8 hours (weighted by topic complexity)
+- OR Unit 1: 12 hours, Unit 2: 10 hours, Unit 3: 10 hours, Unit 4: 8 hours (weighted by topic complexity)`}
 
 Rules:
 - If the original syllabus has more or fewer than 4 units, reorganise the content into exactly 4 units
@@ -251,10 +263,10 @@ Rules:
 - Maintain realistic teaching scope — every topic listed must be teachable within the time available
 - If adding new topics, remove or reduce other content proportionally to preserve hour totals
 - The Total row in each unit's topic cluster table must sum to the unit's allocated hours
-- The grand total across all 4 units must match the credit-based total (e.g., 40 hours for 4 credits)
+- The grand total across all 4 units must match ${isLaw ? '56 hours (mandatory for all law courses)' : 'the credit-based total (e.g., 40 hours for 4 credits)'}
 
 **ARITHMETIC VERIFICATION (MANDATORY — do this before producing output):**
-For each unit, manually add the Hours column values in the topic cluster table. Confirm the sum equals the unit's stated contact hours. Then add all four unit totals and confirm they equal the credit-based grand total. If any sum is wrong, correct the individual row values before outputting. Do not guess or approximate — the numbers must be exactly correct.
+For each unit, manually add the Hours column values in the topic cluster table. Confirm the sum equals the unit's stated contact hours. Then add all four unit totals and confirm they equal ${isLaw ? '56' : 'the credit-based grand total'}. If any sum is wrong, correct the individual row values before outputting. Do not guess or approximate — the numbers must be exactly correct.
 
 ---
 
